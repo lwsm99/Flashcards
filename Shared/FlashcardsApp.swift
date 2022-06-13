@@ -1,10 +1,3 @@
-//
-//  FlashcardsApp.swift
-//  Shared
-//
-//  Created by Lucas Weissmann on 13.06.22.
-//
-
 import SwiftUI
 
 @main

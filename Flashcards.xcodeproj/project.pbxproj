@@ -21,6 +21,8 @@
 		A084E90C2857665A0045414B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084E8DE285766580045414B /* Persistence.swift */; };
 		A084E90D2857665A0045414B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A084E8DF2857665A0045414B /* Assets.xcassets */; };
 		A084E90E2857665A0045414B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A084E8DF2857665A0045414B /* Assets.xcassets */; };
+		D41C685228608AF100FF0E78 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41C685128608AF100FF0E78 /* Extensions.swift */; };
+		D41C685328608AF100FF0E78 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41C685128608AF100FF0E78 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,7 @@
 		A084E8FD2857665A0045414B /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A084E9012857665A0045414B /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		A084E9032857665A0045414B /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		D41C685128608AF100FF0E78 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,11 +106,14 @@
 		A084E8D9285766580045414B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D41C685528608EE000FF0E78 /* Components */,
+				D41C685428608ED800FF0E78 /* Pages */,
 				A084E8DC285766580045414B /* FlashcardsApp.swift */,
 				A084E8DD285766580045414B /* ContentView.swift */,
 				A084E8DE285766580045414B /* Persistence.swift */,
 				A084E8DF2857665A0045414B /* Assets.xcassets */,
 				A084E8DA285766580045414B /* Flashcards.xcdatamodeld */,
+				D41C685128608AF100FF0E78 /* Extensions.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -147,6 +153,20 @@
 				A084E9032857665A0045414B /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		D41C685428608ED800FF0E78 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		D41C685528608EE000FF0E78 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41C685228608AF100FF0E78 /* Extensions.swift in Sources */,
 				A084E9072857665A0045414B /* FlashcardsApp.swift in Sources */,
 				A084E90B2857665A0045414B /* Persistence.swift in Sources */,
 				A084E9052857665A0045414B /* Flashcards.xcdatamodeld in Sources */,
@@ -318,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41C685328608AF100FF0E78 /* Extensions.swift in Sources */,
 				A084E9082857665A0045414B /* FlashcardsApp.swift in Sources */,
 				A084E90C2857665A0045414B /* Persistence.swift in Sources */,
 				A084E9062857665A0045414B /* Flashcards.xcdatamodeld in Sources */,
@@ -591,7 +613,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38GU796C59;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MARKETING_VERSION = 1.0;
@@ -611,7 +633,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38GU796C59;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MARKETING_VERSION = 1.0;

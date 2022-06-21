@@ -63,13 +63,13 @@
 		A084E8FD2857665A0045414B /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A084E9012857665A0045414B /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		A084E9032857665A0045414B /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
-		D410A9A0286097AD00C1E939 /* StartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartPage.swift; path = Shared/StartPage.swift; sourceTree = SOURCE_ROOT; };
-		D410A9A228609A7F00C1E939 /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Footer.swift; path = Shared/Footer.swift; sourceTree = SOURCE_ROOT; };
+		D410A9A0286097AD00C1E939 /* StartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartPage.swift; path = Shared/Pages/StartPage.swift; sourceTree = SOURCE_ROOT; };
+		D410A9A228609A7F00C1E939 /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Footer.swift; path = Shared/Components/Footer.swift; sourceTree = SOURCE_ROOT; };
 		D41C685128608AF100FF0E78 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		D47CDB592861CB560073BEEF /* AddCardsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddCardsPage.swift; path = Shared/AddCardsPage.swift; sourceTree = SOURCE_ROOT; };
-		D47CDB5B2861CBF60073BEEF /* LearnCardsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LearnCardsPage.swift; path = Shared/LearnCardsPage.swift; sourceTree = SOURCE_ROOT; };
-		D4BE11462861EE6A00370EC5 /* DeckCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeckCard.swift; path = Shared/DeckCard.swift; sourceTree = SOURCE_ROOT; };
-		D4E7BF1C2861E26600EFFDBF /* DotsMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DotsMenuButton.swift; path = Shared/DotsMenuButton.swift; sourceTree = SOURCE_ROOT; };
+		D47CDB592861CB560073BEEF /* AddCardsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddCardsPage.swift; path = Shared/Pages/AddCardsPage.swift; sourceTree = SOURCE_ROOT; };
+		D47CDB5B2861CBF60073BEEF /* LearnCardsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LearnCardsPage.swift; path = Shared/Pages/LearnCardsPage.swift; sourceTree = SOURCE_ROOT; };
+		D4BE11462861EE6A00370EC5 /* DeckCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeckCard.swift; path = Shared/Components/DeckCard.swift; sourceTree = SOURCE_ROOT; };
+		D4E7BF1C2861E26600EFFDBF /* DotsMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DotsMenuButton.swift; path = Shared/Components/DotsMenuButton.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +118,8 @@
 		A084E8D9285766580045414B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				D41C685428608ED800FF0E78 /* Pages */,
-				D41C685528608EE000FF0E78 /* Components */,
+				D4365A892862113E000E0623 /* Components */,
+				D4365A8828621120000E0623 /* Pages */,
 				A084E8DC285766580045414B /* FlashcardsApp.swift */,
 				A084E8DD285766580045414B /* ContentView.swift */,
 				A084E8DE285766580045414B /* Persistence.swift */,
@@ -167,7 +167,7 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
-		D41C685428608ED800FF0E78 /* Pages */ = {
+		D4365A8828621120000E0623 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
 				D410A9A0286097AD00C1E939 /* StartPage.swift */,
@@ -177,7 +177,7 @@
 			path = Pages;
 			sourceTree = "<group>";
 		};
-		D41C685528608EE000FF0E78 /* Components */ = {
+		D4365A892862113E000E0623 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				D410A9A228609A7F00C1E939 /* Footer.swift */,

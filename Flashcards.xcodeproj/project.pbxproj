@@ -118,13 +118,12 @@
 		A084E8D9285766580045414B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				A084E91D2868CDC40045414B /* Database */,
 				D4365A892862113E000E0623 /* Components */,
 				D4365A8828621120000E0623 /* Pages */,
 				A084E8DC285766580045414B /* FlashcardsApp.swift */,
 				A084E8DD285766580045414B /* ContentView.swift */,
-				A084E8DE285766580045414B /* Persistence.swift */,
 				A084E8DF2857665A0045414B /* Assets.xcassets */,
-				A084E8DA285766580045414B /* Flashcards.xcdatamodeld */,
 				D41C685128608AF100FF0E78 /* Extensions.swift */,
 			);
 			path = Shared;
@@ -165,6 +164,15 @@
 				A084E9032857665A0045414B /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		A084E91D2868CDC40045414B /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				A084E8DA285766580045414B /* Flashcards.xcdatamodeld */,
+				A084E8DE285766580045414B /* Persistence.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		D4365A8828621120000E0623 /* Pages */ = {

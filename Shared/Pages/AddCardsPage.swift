@@ -13,20 +13,36 @@ struct AddCardsPage: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     
+    // Card Variables
     @State private var cardFront = ""
     @State private var cardBack = ""
-    @State private var selectedDecks:[Deck] = []
+    @State private var deckOfCard:[Deck] = []
     
-    // Fetche alle vorhandenen Decks
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Deck.title, ascending: true)], animation: .default) private var deckList: FetchedResults<Deck>
+    // Deck Variables
+    @State private var deckTitle = ""
+    @State private var deckColor = UIColor.blue // TODO: Change Defaultcolor
+    @State private var cardsOfDeck:[Card] = []
     
     var body: some View {
         Text("TODO: Add AddCardsPage")
+    }
+    
+    private func addDeck() {
+        let deck = Deck(context: viewContext)
         
-        // TODO: Mit ForEach(deckList) alle Decks aus DB anzeigen (momentan noch leer)
-        // TODO: Um eine Karte direkt zu Deck(s) hinzuzufügen brauchen wir dann eine Deck Auswahl und du würdest dann die ausgewählten Decks 'selectedDecks' hinzufügen, diese werden dann bei addCard automatisch berücksichtigt
+        // Initialize Data
+        deck.id = UUID()
+        deck.title = deckTitle
+        deck.color = deckColor
         
-        // TODO: cardFront & cardBack je nach Usereingabe setzen
+        // Assign Cards to deck
+        let uniqueCard = Set(cardsOfDeck)
+        for card in uniqueCard {
+            deck.addToDeckToCard(card)
+        }
+        
+        // Try saving
+        try! viewContext.save()
     }
     
     private func addCard() {
@@ -43,18 +59,10 @@ struct AddCardsPage: View {
         card.front = cardFront
         card.back = cardBack
         
-        // Set Decks for the card assigned in the view
-        let uniqueDeck = Set(selectedDecks)
-        for deck in uniqueDeck {
-            card.addToCardToDeck(deck)
-        }
+        // Set Deck for the card
+        card.cardToDeck = deckOfCard.first
         
         // Try saving
-        do {
-            try viewContext.save()
-        }
-        catch {
-            print(error.localizedDescription)
-        }
+        try! viewContext.save()
     }
 }

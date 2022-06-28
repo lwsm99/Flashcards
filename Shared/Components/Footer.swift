@@ -89,6 +89,6 @@ struct Footer: View {
                     Spacer()
                 }
             }
-        }.background(Color.background)
+        }.background(Color.background).ignoresSafeArea(.keyboard)
     }
 }

@@ -21,6 +21,8 @@
 		A084E90C2857665A0045414B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084E8DE285766580045414B /* Persistence.swift */; };
 		A084E90D2857665A0045414B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A084E8DF2857665A0045414B /* Assets.xcassets */; };
 		A084E90E2857665A0045414B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A084E8DF2857665A0045414B /* Assets.xcassets */; };
+		D40D0542286B119000D473FE /* SearchInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D0541286B119000D473FE /* SearchInput.swift */; };
+		D40D0544286B214900D473FE /* SelectDecksItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D0543286B214900D473FE /* SelectDecksItem.swift */; };
 		D410A9A1286097AD00C1E939 /* StartPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410A9A0286097AD00C1E939 /* StartPage.swift */; };
 		D410A9A328609A7F00C1E939 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410A9A228609A7F00C1E939 /* Footer.swift */; };
 		D41C685228608AF100FF0E78 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41C685128608AF100FF0E78 /* Extensions.swift */; };
@@ -63,6 +65,8 @@
 		A084E8FD2857665A0045414B /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A084E9012857665A0045414B /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		A084E9032857665A0045414B /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		D40D0541286B119000D473FE /* SearchInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInput.swift; sourceTree = "<group>"; };
+		D40D0543286B214900D473FE /* SelectDecksItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDecksItem.swift; sourceTree = "<group>"; };
 		D410A9A0286097AD00C1E939 /* StartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartPage.swift; path = Shared/Pages/StartPage.swift; sourceTree = SOURCE_ROOT; };
 		D410A9A228609A7F00C1E939 /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Footer.swift; path = Shared/Components/Footer.swift; sourceTree = SOURCE_ROOT; };
 		D41C685128608AF100FF0E78 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 				D410A9A228609A7F00C1E939 /* Footer.swift */,
 				D4E7BF1C2861E26600EFFDBF /* DotsMenuButton.swift */,
 				D4BE11462861EE6A00370EC5 /* DeckCard.swift */,
+				D40D0541286B119000D473FE /* SearchInput.swift */,
+				D40D0543286B214900D473FE /* SelectDecksItem.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -347,6 +353,7 @@
 			files = (
 				D47CDB5A2861CB560073BEEF /* AddCardsPage.swift in Sources */,
 				D41C685228608AF100FF0E78 /* Extensions.swift in Sources */,
+				D40D0542286B119000D473FE /* SearchInput.swift in Sources */,
 				D410A9A1286097AD00C1E939 /* StartPage.swift in Sources */,
 				A084E9072857665A0045414B /* FlashcardsApp.swift in Sources */,
 				D4BE11472861EE6A00370EC5 /* DeckCard.swift in Sources */,
@@ -355,6 +362,7 @@
 				A084E9052857665A0045414B /* Flashcards.xcdatamodeld in Sources */,
 				A084E9092857665A0045414B /* ContentView.swift in Sources */,
 				D4E7BF1D2861E26600EFFDBF /* DotsMenuButton.swift in Sources */,
+				D40D0544286B214900D473FE /* SelectDecksItem.swift in Sources */,
 				D47CDB5C2861CBF60073BEEF /* LearnCardsPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

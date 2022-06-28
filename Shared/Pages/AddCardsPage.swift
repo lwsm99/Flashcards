@@ -80,6 +80,7 @@ struct AddCardsPage: View {
         .padding([.leading, .trailing], 15)
         .frame(maxHeight: .infinity)
         .background(Color.background)
+        .ignoresSafeArea(.keyboard)
     }
     
     

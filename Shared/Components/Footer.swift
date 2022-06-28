@@ -25,6 +25,14 @@ struct Footer: View {
         "plus",
         "book"
     ]
+    func middleButtonAction(index: Int) {
+        if(self.selectedIndex == 1 && index == 1) {
+            print("Save all from AddCardsPage  here")
+            self.selectedIndex = 0
+        } else{
+            self.selectedIndex = index;
+        }
+    }
     let middleButtonSize: CGFloat = 60
     var body: some View {
         VStack {
@@ -52,7 +60,6 @@ struct Footer: View {
                                 }
                            }
                     default:
-                    
                         StartPage()
                             .toolbar {
                                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
@@ -72,14 +79,12 @@ struct Footer: View {
             HStack {
                 ForEach(0..<3,id: \.self) { number in
                     Spacer()
-                    Button(action: { self.selectedIndex = number }, label: {
+                    Button(action: { middleButtonAction(index: number) }, label: {
                         if number == 1 {
-                            Image(systemName: icons[number]).font(.system(size: 26)).foregroundColor(Color.white).frame(width: middleButtonSize, height: middleButtonSize).background(Color.primary).cornerRadius(middleButtonSize/2)
+                            Image(systemName: self.selectedIndex == 1 ? "checkmark" : icons[number]).font(.system(size: 26)).foregroundColor(Color.white).frame(width: middleButtonSize, height: middleButtonSize).background(Color.primary).cornerRadius(middleButtonSize/2)
                         } else {
-                            Image(systemName: icons[number]).foregroundColor( selectedIndex == number ? Color.primary : Color.disabled).font(.system(size: 26))
+                            Image(systemName: icons[number]).foregroundColor( selectedIndex == number ? Color.disabled : Color.primary).font(.system(size: 26))
                         }
-                        
-                        
                     })
                     Spacer()
                 }

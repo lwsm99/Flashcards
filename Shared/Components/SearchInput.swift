@@ -15,7 +15,7 @@ struct SearchInput: View {
         HStack {
             Spacer().frame(width:15)
             HStack {
-                TextField("Name der Ordner eingeben", text: $inputValue)
+                TextField("Name des Decks eingeben", text: $inputValue)
                 Image(systemName: "magnifyingglass").foregroundColor(Color.disabled)
             }.frame(height: 47)
                 .padding([.leading, .trailing], 15)

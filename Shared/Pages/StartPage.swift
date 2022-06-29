@@ -12,6 +12,9 @@ struct StartPage: View {
     @State private var inputValue: String = ""
     @State private var bgColor = Color.error
     
+    // Fetch all available Decks
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Deck.title, ascending: true)], animation: .default) private var deckList: FetchedResults<Deck>
+    
     var body: some View {
         VStack {
             

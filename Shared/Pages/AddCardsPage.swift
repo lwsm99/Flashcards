@@ -10,13 +10,14 @@ import SwiftUI
 
 struct AddCardsPage: View {
     
-    @State var cardPosition: CGFloat = 0
-    let smallButtonSize: CGFloat = 40
-    @State private var inputValue: String = ""
-    @State private var bgColor = Color.error
-    @State var draggeddIndex = 0
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
+    
+    // UI Variables
+    @State var cardPosition: CGFloat = 0
+    let smallButtonSize: CGFloat = 40
+    @State private var bgColor = Color.error
+    @State var draggeddIndex = 0
     
     // Card Variables
     @State private var cardFront = ""
@@ -31,11 +32,10 @@ struct AddCardsPage: View {
     var body: some View {
         VStack {
             HStack {
-                // Input for deck name
-                TextField("Deck name", text: $inputValue).frame(height: 47)
+                // Input for deck title
+                TextField("Deck Titel", text: $deckTitle).frame(height: 47)
                     .padding([.leading, .trailing], 15)
                     .background(Color.white, in: Capsule())
-                
                 
                 ColorPicker("", selection: $bgColor).labelsHidden().scaleEffect(CGSize(width: 1.6, height: 1.6)).padding([.leading, .trailing], 15)
             }.padding(.bottom, 20)
@@ -55,10 +55,10 @@ struct AddCardsPage: View {
                         
                         // Card
                         VStack {
-                            TextField("Begriff", text: $inputValue).frame(height: 40)
+                            TextField("Begriff", text: $cardFront).frame(height: 40)
                                 .padding([.leading, .trailing], 15)
                                 .background(Color.white, in: Capsule())
-                            TextField("Definition", text: $inputValue).frame(height: 40)
+                            TextField("Definition", text: $cardBack).frame(height: 40)
                                 .padding([.leading, .trailing], 15)
                                 .background(Color.white, in: Capsule())
                         }
@@ -94,7 +94,6 @@ struct AddCardsPage: View {
         .background(Color.background)
         .ignoresSafeArea(.keyboard)
     }
-    
     
     
     func getOffset(index: Int) -> CGFloat {

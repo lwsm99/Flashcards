@@ -18,6 +18,9 @@ struct LearnCardsPage: View {
     @State var selection = Set<String>()
     @State var isSelected: Bool = true
     
+    // Fetch all available Cards
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: true)], animation: .default) private var cardList: FetchedResults<Card>
+    
     let names = [
            "Spanisch",
            "Deutsch",

@@ -16,5 +16,6 @@ extension Color {
     static let statisticsSecondary = Color("StatisticsSecondary")
     static let statisticsTertiary = Color("StatisticsTertiary")
     static let disabled = Color("Disabled")
+    static let uncreatedCardColor = Color("UncreatedCard")
     static let systemBackground = Color(uiColor: .systemBackground)
 }

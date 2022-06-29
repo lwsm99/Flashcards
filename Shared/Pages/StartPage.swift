@@ -19,16 +19,7 @@ struct StartPage: View {
         VStack {
             
             // Input
-            HStack {
-                Spacer().frame(width:15)
-                HStack {
-                    TextField("Name der Ordner eingeben", text: $inputValue)
-                    Image(systemName: "magnifyingglass").foregroundColor(Color.disabled)
-                }.frame(height: 47)
-                    .padding([.leading, .trailing], 15)
-                    .background(Color.white, in: Capsule())
-                Spacer().frame(width:15)
-            }
+            SearchInput()
             
             Spacer().frame(height:30)
             

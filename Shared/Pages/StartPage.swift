@@ -10,6 +10,9 @@ import SwiftUI
 
 struct StartPage: View {
     @State private var inputValue: String = ""
+    @State private var bgColor1 = Color.statisticsPrimary
+    @State private var bgColor2 = Color.statisticsSecondary
+    @State private var bgColor3 = Color.statisticsTertiary
     @State private var bgColor = Color.error
     
     // Fetch all available Decks
@@ -26,14 +29,16 @@ struct StartPage: View {
             // Decks 
             ScrollView {
                 VStack{
-                    ForEach(
-                                1...100,
-                                id: \.self
-                            ) {
-                                number in
-                                DeckCard(color: $bgColor, title: "Spanisch", subtitle: "10 Karten", progress: 80)
-                            }
-                }
+                    NavigationLink(destination: DeckCardMenu(title: "Spanisch", cardCount: 10, progress: 67, color: $bgColor1)) {
+                        DeckCard(color: $bgColor1, title: "Spanisch", subtitle: "10 Karten", progress: 67)
+                    }
+                    NavigationLink(destination: DeckCardMenu(title: "Englisch", cardCount: 27, progress: 92, color: $bgColor2)) {
+                        DeckCard(color: $bgColor2, title: "Englisch", subtitle: "27 Karten", progress: 92)
+                    }
+                    NavigationLink(destination: DeckCardMenu(title: "Japanisch", cardCount: 13, progress: 24, color: $bgColor3)) {
+                        DeckCard(color: $bgColor3, title: "Japanisch", subtitle: "13 Karten", progress: 24)
+                    }
+                }.navigationTitle("Alle Decks")
             }
             
         }

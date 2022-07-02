@@ -15,7 +15,6 @@ struct DeckCard: View {
     let progress: CGFloat
     
     var body: some View {
-        Button(action: {}){
             VStack {
                 HStack{
                     RoundedRectangle(cornerRadius: 10).fill(color).frame(width: 60, height: 60)
@@ -27,6 +26,6 @@ struct DeckCard: View {
                 }.frame(maxWidth: .infinity)
                 ProgressView("", value: progress, total: 100).accentColor(color)
             }.frame(maxWidth: .infinity).padding(16).background(Color.white).cornerRadius(20).padding([.leading, .trailing], 15)
-        }
+        
     }
 }

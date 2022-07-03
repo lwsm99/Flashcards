@@ -40,50 +40,36 @@ struct AddCardsPage: View {
                 ColorPicker("", selection: $bgColor).labelsHidden().scaleEffect(CGSize(width: 1.6, height: 1.6)).padding([.leading, .trailing], 15)
             }.padding(.bottom, 20)
             
-            ScrollView {
                 ForEach(
-                    0...1,
+                    0...0,
                     id: \.self
                 ) {
                     card in
-                    ZStack(alignment: .trailing) {
-                        
-                        // Delete button
-                        Button(action: {}) {
-                            Image(systemName: "trash").font(.system(size: 26)).foregroundColor(Color.white).frame(width: smallButtonSize, height: smallButtonSize).background(Color.error).cornerRadius(smallButtonSize/2)
-                        }.padding(.trailing, 10)
-                        
                         // Card
                         VStack {
-                            TextField("Begriff", text: $cardFront).frame(height: 40)
+                            TextField("Begriff", text: $cardFront).frame(height: 65)
                                 .padding([.leading, .trailing], 15)
-                                .background(Color.white, in: Capsule())
-                            TextField("Definition", text: $cardBack).frame(height: 40)
+                                .background(Color.white)
+                                .cornerRadius(8)
+                            TextField("Definition", text: $cardBack).frame(height: 400)
                                 .padding([.leading, .trailing], 15)
-                                .background(Color.white, in: Capsule())
+                                .background(Color.white)
+                                .cornerRadius(8)
                         }
                         .frame(maxWidth: .infinity)
                         .padding(20)
                         .background(Color.uncreatedCardColor)
-                        .cornerRadius(20)
                         .offset(x: getOffset(index: card))
-                        .gesture(DragGesture()
-                            .onChanged({
-                                value in
-                                draggeddIndex = card
-                                if(value.translation.width < 0) {
-                                    cardPosition = -90
-                                }
-                            })
-                            .onEnded(onEnd(value:)))
-                        .animation(.spring(), value: getOffset(index: card))
-                    }
                     
                     
-                }
-            }.padding(.bottom, 10)
+                    
+                }.padding(.bottom, 10)
             
-            Button(action: {}){
+            Button(action: {
+                print("Save")
+                addDeck()
+                addCard()
+            }){
                 Image(systemName: "plus").font(.system(size: 20)).foregroundColor(Color.primary).frame(width: smallButtonSize, height: smallButtonSize).background(Color.white).cornerRadius(smallButtonSize/2)
             }
             
@@ -121,7 +107,7 @@ struct AddCardsPage: View {
         }
         
         // Try saving
-        try! viewContext.save()
+        try? viewContext.save()
     }
     
     private func addCard() {
@@ -142,6 +128,6 @@ struct AddCardsPage: View {
         card.cardToDeck = deckOfCard.first
         
         // Try saving
-        try! viewContext.save()
+        try? viewContext.save()
     }
 }

@@ -8,10 +8,18 @@
 import SwiftUI
 
 struct DeckCardMenu: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.dismiss) private var dismiss
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.id, ascending: true)], animation: .default) private var cardList: FetchedResults<Card>
+    
     let title: String
     let cardCount: Int
     let progress: CGFloat
     @Binding var color: Color
+    let deck: Deck
+    
+    //TODO: Fetch only for current deck
+    
     var body: some View {
         VStack {
             // MARK: Title
@@ -48,6 +56,15 @@ struct DeckCardMenu: View {
             
             // MARK: Cards
             ScrollView {
+                ForEach(cardList) { card in
+                    NavigationLink(destination: FullCardView()) {
+                        DefaultCard(cardTitle: card.front!, cardDefinition: card.back!)
+                    }
+                    .background(RoundedRectangle(cornerRadius: 10).fill(.white))
+                    .foregroundColor(.black)
+                    Spacer().frame(height: 20)
+                }
+                /*
                 ForEach(1...cardCount, id: \.self) {
                     number in
                     NavigationLink(destination: FullCardView()) {
@@ -56,7 +73,8 @@ struct DeckCardMenu: View {
                     .background(RoundedRectangle(cornerRadius: 10).fill(.white))
                     .foregroundColor(.black)
                     Spacer().frame(height: 20)
-                }
+                 */
+                
             }
         }
         .frame(maxWidth: .infinity)

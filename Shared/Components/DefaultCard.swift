@@ -25,7 +25,5 @@ struct DefaultCard: View {
                 .frame(width: 350, height: 10, alignment: .leading)
             Spacer().frame(height: 20)
         }
-        .background(RoundedRectangle(cornerRadius: 10).fill(.white))
-        Spacer().frame(height: 20)
     }
 }

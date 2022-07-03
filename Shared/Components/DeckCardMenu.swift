@@ -50,9 +50,12 @@ struct DeckCardMenu: View {
             ScrollView {
                 ForEach(1...cardCount, id: \.self) {
                     number in
-                    //NavigationLink(destination: FullCardView()) {
+                    NavigationLink(destination: FullCardView()) {
                         DefaultCard(cardTitle: "Begriff", cardDefinition: "Definition", number: number)
-                    //}
+                    }
+                    .background(RoundedRectangle(cornerRadius: 10).fill(.white))
+                    .foregroundColor(.black)
+                    Spacer().frame(height: 20)
                 }
             }
         }

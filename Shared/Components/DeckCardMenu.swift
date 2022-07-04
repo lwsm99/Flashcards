@@ -67,7 +67,7 @@ struct DeckCardMenu: View {
                 /*
                 ForEach(1...cardCount, id: \.self) {
                     number in
-                    NavigationLink(destination: FullCardView()) {
+                    NavigationLink(destination: FullCardViewStatic(front: "Begriff", back:"Definition", title: title, showButtons: false)) {
                         DefaultCard(cardTitle: "Begriff", cardDefinition: "Definition", number: number)
                     }
                     .background(RoundedRectangle(cornerRadius: 10).fill(.white))
@@ -76,6 +76,7 @@ struct DeckCardMenu: View {
                  */
                 
             }
+            .frame(maxWidth: .infinity)
         }
         .frame(maxWidth: .infinity)
         .background(Color.background)

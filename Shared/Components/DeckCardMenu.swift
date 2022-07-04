@@ -8,19 +8,23 @@
 import SwiftUI
 
 struct DeckCardMenu: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.dismiss) private var dismiss
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.id, ascending: true)], animation: .default) private var cardList: FetchedResults<Card>
     
+    // Variables
     let title: String
     let cardCount: Int
     let progress: CGFloat
     @Binding var color: Color
     let deck: Deck
     
-    //TODO: Fetch only for current deck
+    // Fetch Requests
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    // TODO: Ich komme an deck nicht ran, weil es hier noch nicht initialisiert wurde
+    /* @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: true)], predicate: NSPredicate(format: "cardToDeck == %@", deck), animation: .default) var cardList: FetchedResults<Card>*/
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: true)], animation: .default) var cardList: FetchedResults<Card>
     
     var body: some View {
+        
         VStack {
             // MARK: Title
             /*
@@ -57,7 +61,7 @@ struct DeckCardMenu: View {
             // MARK: Cards
             ScrollView {
                 ForEach(cardList) { card in
-                    NavigationLink(destination: FullCardView()) {
+                    NavigationLink(destination: FullCardViewStatic(front: card.front!, back: card.back!, title: title, showButtons: false)) {
                         DefaultCard(cardTitle: card.front!, cardDefinition: card.back!)
                     }
                     .background(RoundedRectangle(cornerRadius: 10).fill(.white))

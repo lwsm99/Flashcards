@@ -15,11 +15,16 @@ struct ToggleCheckboxStyle: ToggleStyle {
 }
 
 struct LearnCardsPage: View {
+    
+    // Fetch Requests
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Deck.title, ascending: true)], animation: .default) private var deckList: FetchedResults<Deck>
+    
+    // Variables
     @State var selection = Set<String>()
     @State var isSelected: Bool = true
-    
-    // Fetch all available Cards
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: true)], animation: .default) private var cardList: FetchedResults<Card>
+
     
     /**
      Fetch all decks

@@ -60,9 +60,6 @@ struct AddCardsPage: View {
                         .padding(20)
                         .background(Color.uncreatedCardColor)
                         .offset(x: getOffset(index: card))
-                    
-                    
-                    
                 }.padding(.bottom, 10)
             
             Button(action: {

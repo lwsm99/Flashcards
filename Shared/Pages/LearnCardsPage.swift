@@ -21,6 +21,12 @@ struct LearnCardsPage: View {
     // Fetch all available Cards
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: true)], animation: .default) private var cardList: FetchedResults<Card>
     
+    /**
+     Fetch all decks
+     Decks selected -> Fetch all cards for selected decks
+     Render card
+     */
+    
     let names = [
            "Spanisch",
            "Deutsch",

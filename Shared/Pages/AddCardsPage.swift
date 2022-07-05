@@ -103,6 +103,8 @@ struct AddCardsPage: View {
             deck.addToDeckToCard(card)
         }
         
+        deckOfCard.append(deck)
+        
         // Try saving
         try? viewContext.save()
     }

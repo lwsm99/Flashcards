@@ -15,6 +15,7 @@ struct StartPage: View {
     @State private var bgColor3 = Color.statisticsTertiary
     @State private var bgColor = Color.error
     
+    
     // Fetch Requests
     @Environment(\.managedObjectContext) private var viewContext
     // All Decks
@@ -40,7 +41,6 @@ struct StartPage: View {
                     }
                 }.navigationTitle("Alle Decks")
             }
-            
         }
         .background(Color.background)
     }

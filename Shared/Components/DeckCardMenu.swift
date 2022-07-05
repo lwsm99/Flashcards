@@ -20,7 +20,7 @@ struct DeckCardMenu: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     // TODO: Ich komme an deck nicht ran, weil es hier noch nicht initialisiert wurde
-    /* @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: true)], predicate: NSPredicate(format: "cardToDeck == %@", deck), animation: .default) var cardList: FetchedResults<Card>*/
+    //@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: true)], predicate: NSPredicate(format: "cardToDeck == %@", deck), animation: .default) var cardList: FetchedResults<Card>
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: true)], animation: .default) var cardList: FetchedResults<Card>
     
     var body: some View {
@@ -61,12 +61,14 @@ struct DeckCardMenu: View {
             // MARK: Cards
             ScrollView {
                 ForEach(cardList) { card in
-                    NavigationLink(destination: FullCardViewStatic(front: card.front!, back: card.back!, title: title, showButtons: false)) {
-                        DefaultCard(cardTitle: card.front!, cardDefinition: card.back!)
+                    if(card.cardToDeck == deck) {
+                        NavigationLink(destination: FullCardViewStatic(front: card.front!, back: card.back!, title: title, showButtons: false)) {
+                            DefaultCard(cardTitle: card.front!, cardDefinition: card.back!)
+                        }
+                        .background(RoundedRectangle(cornerRadius: 10).fill(.white))
+                        .foregroundColor(.black)
+                        Spacer().frame(height: 20)
                     }
-                    .background(RoundedRectangle(cornerRadius: 10).fill(.white))
-                    .foregroundColor(.black)
-                    Spacer().frame(height: 20)
                 }
                 /*
                 ForEach(1...cardCount, id: \.self) {

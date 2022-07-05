@@ -20,7 +20,8 @@ struct StartPage: View {
     @Environment(\.managedObjectContext) private var viewContext
     // All Decks
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Deck.title, ascending: true)], animation: .default) private var deckList: FetchedResults<Deck>
-    // Card Amount for each deck
+    // All Cards
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: true)], animation: .default) private var cardList: FetchedResults<Card>
     
     
     var body: some View {
@@ -36,7 +37,7 @@ struct StartPage: View {
                 VStack{
                     ForEach(deckList) { deck in
                         NavigationLink(destination: DeckCardMenu(title: deck.title!, cardCount: getCardCount(deck: deck), progress: 67, color: $bgColor1, deck: deck)) {
-                            DeckCard(color: $bgColor1, title: deck.title!, subtitle: "10 Karten", progress: 67)
+                            DeckCard(color: $bgColor1, title: deck.title!, subtitle: "\(getCardCount(deck: deck)) Karte(n)", progress: 67)
                         }
                     }
                 }.navigationTitle("Alle Decks")
@@ -44,9 +45,14 @@ struct StartPage: View {
         }
         .background(Color.background)
     }
-    
     func getCardCount(deck: Deck) -> Int {
-        @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: true)], predicate: NSPredicate(format: "cardToDeck == %@", deck), animation: .default) var cardList: FetchedResults<Card>
-        return cardList.count
+        var cardCnt = 0
+        
+        for card in cardList {
+            if(card.cardToDeck == deck) {
+                cardCnt += 1
+            }
+        }
+        return cardCnt
     }
 }

@@ -21,6 +21,8 @@ struct LearnCardsPage: View {
     
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Deck.title, ascending: true)], animation: .default) private var deckList: FetchedResults<Deck>
     
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: true)], animation: .default) private var cardList: FetchedResults<Card>
+    
     // Variables
     @State var selection = Set<String>()
     @State var isSelected: Bool = true
@@ -32,12 +34,6 @@ struct LearnCardsPage: View {
      Render card
      */
     
-    let names = [
-           "Spanisch",
-           "Deutsch",
-           "OOP",
-           "SWTP"
-       ]
     var body: some View {
         VStack {
             
@@ -50,9 +46,9 @@ struct LearnCardsPage: View {
             }.frame(maxWidth: .infinity, alignment: .trailing).padding([.leading, .trailing], 30).padding(.top, 10)
             
             
-            List(names, id: \.self, selection: $selection) {
-                name in
-                SelectDecksItem(name: name, selectedItems: $selection)
+            List(deckList, id: \.self, selection: $selection) {
+                deck in
+                SelectDecksItem(name: deck.title!, selectedItems: $selection)
             }
             .background(Color.background.ignoresSafeArea())
             .onAppear {

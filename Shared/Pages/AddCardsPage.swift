@@ -22,7 +22,7 @@ struct AddCardsPage: View {
     // Card Variables
     @State private var cardFront = ""
     @State private var cardBack = ""
-    @State private var deckOfCard:[Deck] = []
+    @State private var deckOfCard: Deck? = nil
     
     // Deck Variables
     @State private var deckTitle = ""
@@ -103,7 +103,8 @@ struct AddCardsPage: View {
             deck.addToDeckToCard(card)
         }
         
-        deckOfCard.append(deck)
+        // Set Deck of card
+        deckOfCard = deck
         
         // Try saving
         try? viewContext.save()
@@ -118,13 +119,17 @@ struct AddCardsPage: View {
         card.box = 0
         card.passedCount = 0
         card.failedCount = 0
+        card.lastReviewed = card.createdAt
         
         // Set Front/Back of the card to the value assigned in the view
         card.front = cardFront
         card.back = cardBack
         
         // Set Deck for the card
-        card.cardToDeck = deckOfCard.first
+        card.cardToDeck = deckOfCard
+        
+        // Append Card to relationship
+        cardsOfDeck.append(card)
         
         // Try saving
         try? viewContext.save()

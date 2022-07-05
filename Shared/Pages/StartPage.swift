@@ -15,8 +15,14 @@ struct StartPage: View {
     @State private var bgColor3 = Color.statisticsTertiary
     @State private var bgColor = Color.error
     
-    // Fetch all available Decks
+    
+    // Fetch Requests
+    @Environment(\.managedObjectContext) private var viewContext
+    // All Decks
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Deck.title, ascending: true)], animation: .default) private var deckList: FetchedResults<Deck>
+    // All Cards
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: true)], animation: .default) private var cardList: FetchedResults<Card>
+    
     
     var body: some View {
         VStack {
@@ -29,19 +35,24 @@ struct StartPage: View {
             // Decks 
             ScrollView {
                 VStack{
-                    NavigationLink(destination: DeckCardMenu(title: "Spanisch", cardCount: 10, progress: 67, color: $bgColor1)) {
-                        DeckCard(color: $bgColor1, title: "Spanisch", subtitle: "10 Karten", progress: 67)
-                    }
-                    NavigationLink(destination: DeckCardMenu(title: "Englisch", cardCount: 27, progress: 92, color: $bgColor2)) {
-                        DeckCard(color: $bgColor2, title: "Englisch", subtitle: "27 Karten", progress: 92)
-                    }
-                    NavigationLink(destination: DeckCardMenu(title: "Japanisch", cardCount: 13, progress: 24, color: $bgColor3)) {
-                        DeckCard(color: $bgColor3, title: "Japanisch", subtitle: "13 Karten", progress: 24)
+                    ForEach(deckList) { deck in
+                        NavigationLink(destination: DeckCardMenu(title: deck.title!, cardCount: getCardCount(deck: deck), progress: 67, color: $bgColor1, deck: deck)) {
+                            DeckCard(color: $bgColor1, title: deck.title!, subtitle: "\(getCardCount(deck: deck)) Karte(n)", progress: 67)
+                        }
                     }
                 }.navigationTitle("Alle Decks")
             }
-            
         }
         .background(Color.background)
+    }
+    func getCardCount(deck: Deck) -> Int {
+        var cardCnt = 0
+        
+        for card in cardList {
+            if(card.cardToDeck == deck) {
+                cardCnt += 1
+            }
+        }
+        return cardCnt
     }
 }

@@ -10,11 +10,10 @@ import SwiftUI
 struct DefaultCard: View {
     let cardTitle: String
     let cardDefinition: String
-    let number: Int
     var body: some View {
         VStack {
             Spacer().frame(height: 20)
-            Text("\(cardTitle) \(number)")
+            Text("\(cardTitle)")
                 .font(.subheadline)
                 .bold()
                 .padding()

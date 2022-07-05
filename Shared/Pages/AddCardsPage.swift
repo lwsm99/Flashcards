@@ -47,11 +47,11 @@ struct AddCardsPage: View {
                     card in
                         // Card
                         VStack {
-                            TextField("Begriff", text: $cardFront).frame(height: 65)
+                            TextField("Begriff", text: $cardFront).frame(height: 60)
                                 .padding([.leading, .trailing], 15)
                                 .background(Color.white)
                                 .cornerRadius(8)
-                            TextField("Definition", text: $cardBack).frame(height: 400)
+                            TextField("Definition", text: $cardBack).frame(height: 300)
                                 .padding([.leading, .trailing], 15)
                                 .background(Color.white)
                                 .cornerRadius(8)

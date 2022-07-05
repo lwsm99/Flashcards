@@ -14,6 +14,7 @@ struct FullCardViewStatic: View {
     let title: String
     let showButtons: Bool
     @State private var showFront: Bool = true
+    @State private var showFlip: Bool = true
     var body: some View {
         VStack {
             Color.background
@@ -33,37 +34,53 @@ struct FullCardViewStatic: View {
                         if(showButtons) {
                             Spacer().frame(height: 30)
                             HStack {
-                                Button {
-                                    
-                                } label: {
-                                    Text("🙂")
-                                }.frame(width: 60, height: 60)
-                                .background(RoundedRectangle(cornerRadius: 8).fill(.white))
-                                Spacer().frame(width: 30)
-                                Button {
-                                    
-                                } label: {
-                                    Text("😐")
-                                }.frame(width: 60, height: 60)
+                                if(showFlip) {
+                                    Button(action: {showFlip = !showFlip}) {
+                                        Text("Flip card")
+                                            .frame(width: 300, height: 60)
+                                            .background(RoundedRectangle(cornerRadius: 8).fill(.white))
+                                    }
+                                }
+                                else {
+                                    Button {
+                                        
+                                    } label: {
+                                        Text("♻️")
+                                    }.frame(width: 60, height: 60)
                                     .background(RoundedRectangle(cornerRadius: 8).fill(.white))
-                                Spacer().frame(width: 30)
-                                Button {
-                                    
-                                } label: {
-                                    Text("☹️")
-                                }.frame(width: 60, height: 60)
-                                    .background(RoundedRectangle(cornerRadius: 8).fill(.white))
-                                Spacer().frame(width: 30)
-                                Button {
-                                    
-                                } label: {
-                                    Text("♻️")
-                                }.frame(width: 60, height: 60)
-                                    .background(RoundedRectangle(cornerRadius: 8).fill(.white))
+                                    Spacer().frame(width: 30)
+                                    Button {
+                                        
+                                    } label: {
+                                        Text("☹️")
+                                    }.frame(width: 60, height: 60)
+                                        .background(RoundedRectangle(cornerRadius: 8).fill(.white))
+                                    Spacer().frame(width: 30)
+                                    Button {
+                                        
+                                    } label: {
+                                        Text("😐")
+                                    }.frame(width: 60, height: 60)
+                                        .background(RoundedRectangle(cornerRadius: 8).fill(.white))
+                                    Spacer().frame(width: 30)
+                                    Button {
+                                        
+                                    } label: {
+                                        Text("🙂")
+                                    }.frame(width: 60, height: 60)
+                                        .background(RoundedRectangle(cornerRadius: 8).fill(.white))
+                                }
+                                
                             }
                             Spacer().frame(height: 40)
                         }
                         if(!showButtons) {
+                            Spacer().frame(height: 40)
+                            Button(action: {showFlip = !showFlip; showFront = !showFront}) {
+                                Text(showFlip ? "Show back" : "Show front")
+                                    .frame(width: 330, height: 60)
+                                    .background(RoundedRectangle(cornerRadius: 8).fill(.white))
+                            }
                             Spacer().frame(height: 100)
                         }
                     }

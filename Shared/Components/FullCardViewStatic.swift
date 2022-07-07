@@ -20,12 +20,18 @@ struct FullCardViewStatic: View {
     // Fetch Requests
     @Environment(\.managedObjectContext) private var viewContext
     
-    // Variables
+    // Parameter Variables
     var cardList: FetchedResults<Card>
-    var currCard: Int
+    @State var currCard: Int
     let showButtons: Bool
+    
+    // Private Variables
+    @State private var cardArray: [Card] = []
+    @State private var passedAmount: Int = 0
+    @State private var failedAmount: Int = 0
     @State private var showFront: Bool = true
     @State private var showFlip: Bool = true
+    
     var body: some View {
         VStack {
             Color.background
@@ -37,7 +43,7 @@ struct FullCardViewStatic: View {
                             .font(.title)
                         Spacer().frame(height: 60)
                         Button(action: {showFront = !showFront}) {
-                            Text(showFront ? "\(cardList[currCard].front!)" : "\(cardList[currCard].back!)" )
+                            Text(showFront ? "\(cardList[currCard].front ?? "")" : "\(cardList[currCard].back ?? "")" )
                                 .frame(width: 300, height: 350)
                                 .padding()
                                 .foregroundColor(.black)
@@ -53,7 +59,20 @@ struct FullCardViewStatic: View {
                                     }
                                 }
                                 else {
+                                    
+                                    // TODO: Link to this page via LearnCardsPage
+                                    // TODO: Only give cardList of selected Decks in LearnCardsPage
+                                    
+                                    // TODO: First show "Front" with "Flip Card", when flipping show Solution + Answer Buttons
+                                    // TODO: After Review, switch to next card (Almost works, need to show finish screen when currCard == cardArray.count)
+                                    // TODO: Initialize Card Array and use that instead of cardList, so we can append
+                                    
+                                    // TODO: Display Progress(bar?) (currCard/cardArray.count)
+                                    // TODO: Display Progress (failedAmount & passedAmount)
+                                    
                                     Button {
+                                        //if(currCard == 1) { initArray() }
+                                        //updateCard(card: cardArray[currCard], difficulty: AGAIN)
                                         updateCard(card: cardList[currCard], difficulty: AGAIN)
                                     } label: {
                                         Text("♻️")
@@ -61,21 +80,27 @@ struct FullCardViewStatic: View {
                                     .background(RoundedRectangle(cornerRadius: 8).fill(.white))
                                     Spacer().frame(width: 30)
                                     Button {
-                                        updateCard(card: cardList[currCard], difficulty: HARD)
+                                        //if(currCard == 1) { initArray() }
+                                        //updateCard(card: cardArray[currCard], difficulty: HARD)
+                                        updateCard(card: cardList[currCard], difficulty: AGAIN)
                                     } label: {
                                         Text("😐")
                                     }.frame(width: 60, height: 60)
                                         .background(RoundedRectangle(cornerRadius: 8).fill(.white))
                                     Spacer().frame(width: 30)
                                     Button {
-                                        updateCard(card: cardList[currCard], difficulty: GOOD)
+                                        //if(currCard == 1) { initArray() }
+                                        //updateCard(card: cardArray[currCard], difficulty: GOOD)
+                                        updateCard(card: cardList[currCard], difficulty: AGAIN)
                                     } label: {
                                         Text("🙂")
                                     }.frame(width: 60, height: 60)
                                         .background(RoundedRectangle(cornerRadius: 8).fill(.white))
                                     Spacer().frame(width: 30)
                                     Button {
-                                        updateCard(card: cardList[currCard], difficulty: EASY)
+                                        //if(currCard == 1) { initArray() }
+                                        //updateCard(card: cardList[currCard], difficulty: EASY)
+                                        updateCard(card: cardList[currCard], difficulty: AGAIN)
                                     } label: {
                                         Text("😄")
                                     }.frame(width: 60, height: 60)
@@ -99,32 +124,46 @@ struct FullCardViewStatic: View {
         }
     }
     
+    func initArray() {
+        for card in cardList {
+            cardArray.append(card)
+        }
+    }
+    
     func updateCard(card: Card, difficulty: Int) {
         
         // Set box & counters according to answer
         if(difficulty == AGAIN) {
             card.box = 0
             card.failedCount += 1
+            failedAmount += 1
+            cardArray.append(card)
         }
         if(difficulty == HARD) {
-            card.box -= 1
-            card.passedCount += 1
+            if(card.box == 0) { card.box += 1 }
+            else { card.box -= 1 }
+            card.failedCount += 1
+            failedAmount += 1
         }
         if(difficulty == GOOD) {
             card.box += 1
             card.passedCount += 1
+            passedAmount += 1
         }
         if(difficulty == EASY) {
             card.box += 1.5
             card.passedCount += 1
+            passedAmount += 1
         }
             
         card.lastReviewed = Date()
         
         // Calculate next Review
         var reviewIntervall: Double = 3
-        for _ in 2...Int(floor(card.box)) {
-            reviewIntervall = reviewIntervall * REVIEW_INTERVALL_MULTIPLIER
+        if (card.box >= 2) {
+            for _ in 2...Int(floor(card.box)) {
+                reviewIntervall = reviewIntervall * REVIEW_INTERVALL_MULTIPLIER
+            }
         }
         
         var dateComponent = DateComponents()
@@ -135,8 +174,12 @@ struct FullCardViewStatic: View {
         do {
             try viewContext.save()
             print("Saving success")
+            //print("Box: \(card.box)")
         } catch {
             print("Unexpected error: \(error.localizedDescription).")
         }
+        
+        // Next card
+        currCard += 1
     }
 }

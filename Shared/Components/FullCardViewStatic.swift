@@ -9,9 +9,10 @@ import SwiftUI
 import Foundation
 
 struct FullCardViewStatic: View {
-    let front: String
-    let back: String
-    let title: String
+    
+    // Variables
+    var cardList: FetchedResults<Card>
+    var currCard: Int
     let showButtons: Bool
     @State private var showFront: Bool = true
     @State private var showFlip: Bool = true
@@ -21,12 +22,12 @@ struct FullCardViewStatic: View {
                 .ignoresSafeArea()
                 .overlay(
                     VStack {
-                        Text("\(title)")
+                        Text("\(cardList[currCard].cardToDeck!.title!)")
                             .bold()
                             .font(.title)
                         Spacer().frame(height: 60)
                         Button(action: {showFront = !showFront}) {
-                            Text(showFront ? "\(front)" : "\(back)" )
+                            Text(showFront ? "\(cardList[currCard].front!)" : "\(cardList[currCard].back!)" )
                                 .frame(width: 300, height: 350)
                                 .padding()
                                 .foregroundColor(.black)

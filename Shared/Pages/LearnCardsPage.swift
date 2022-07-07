@@ -56,7 +56,9 @@ struct LearnCardsPage: View {
                 UITableView.appearance().backgroundColor = .clear
             }
             
-            Button(action: { print(selection)}) {
+            Button(action: {
+                
+            }) {
                 Text("Learn selected").foregroundColor(Color.primary)
             }.padding(.top, 10)
 

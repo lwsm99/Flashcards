@@ -60,10 +60,10 @@ struct DeckCardMenu: View {
             
             // MARK: Cards
             ScrollView {
-                ForEach(cardList) { card in
-                    if(card.cardToDeck == deck) {
-                        NavigationLink(destination: FullCardViewStatic(front: card.front ?? "", back: card.back ?? "", title: title, showButtons: false)) {
-                            DefaultCard(cardTitle: card.front ?? "", cardDefinition: card.back ?? "")
+                ForEach(cardList.indices, id: \.self) { idx in
+                    if(cardList[idx].cardToDeck == deck) {
+                        NavigationLink(destination: FullCardViewStatic(cardList: cardList, currCard: idx, showButtons: false)) {
+                            DefaultCard(cardTitle: cardList[idx].front ?? "", cardDefinition: cardList[idx].back ?? "")
                         }
                         .background(RoundedRectangle(cornerRadius: 10).fill(.white))
                         .foregroundColor(.black)

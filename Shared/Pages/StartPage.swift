@@ -36,9 +36,9 @@ struct StartPage: View {
             ScrollView {
                 VStack{
                     ForEach(deckList) { deck in
-                        NavigationLink(destination: DeckCardMenu(title: deck.title!, cardCount: getCardCount(deck: deck), progress: 67, color: $bgColor1, deck: deck)) {
-                            DeckCard(color: $bgColor1, title: deck.title!, subtitle: "\(getCardCount(deck: deck)) Karte(n)", progress: 67)
-                        }
+                        NavigationLink(destination: DeckCardMenu(title: deck.title ?? "", cardCount: getCardCount(deck: deck), progress: 67, color: $bgColor1, deck: deck)) {
+                            DeckCard(color: $bgColor1, title: deck.title ?? "", subtitle: "\(getCardCount(deck: deck)) Karte(n)", progress: 67)
+                        }.simultaneousGesture(TapGesture().onEnded { DeckSettings.value = deck })
                     }
                 }.navigationTitle("Alle Decks")
             }

@@ -89,9 +89,33 @@ struct DeckCardMenu: View {
         .navigationTitle("\(title)")
         .toolbar {
             ToolbarItem(placement: .automatic) {
-                Text("\(cardCount)")
-                    .foregroundColor(.gray)
+                Menu {
+                    Section {
+                        Button(action: {deleteDeck()}) {
+                            Label("Deck löschen", systemImage: "bubble.middle.bottom")
+                        }
+                        
+                        Button(action: {}) {
+                            Label("Impressum", systemImage: "doc")
+                        }
+                    }
+                }
+                label: {
+                    Label("More", systemImage: "ellipsis").foregroundColor(Color.primary)
+                }
             }
         }
     }
+    
+    func deleteDeck() {
+        for (card) in cardList {
+            if(card.cardToDeck == deck) {
+                viewContext.delete(card)
+             }
+         }
+        viewContext.delete(deck)
+    }
 }
+                        
+                           
+

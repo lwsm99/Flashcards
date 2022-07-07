@@ -48,7 +48,7 @@ struct LearnCardsPage: View {
             
             List(deckList, id: \.self, selection: $selection) {
                 deck in
-                SelectDecksItem(name: deck.title!, selectedItems: $selection)
+                SelectDecksItem(name: deck.title ?? "", selectedItems: $selection)
             }
             .background(Color.background.ignoresSafeArea())
             .onAppear {

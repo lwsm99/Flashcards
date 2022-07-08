@@ -24,7 +24,7 @@ struct LearnCardsPage: View {
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: true)], animation: .default) private var cardList: FetchedResults<Card>
     
     // Variables
-    @State var selection = Set<String>()
+    @State var selection = Set<Deck>()
     @State var isSelected: Bool = true
 
     
@@ -48,7 +48,7 @@ struct LearnCardsPage: View {
             
             List(deckList, id: \.self, selection: $selection) {
                 deck in
-                SelectDecksItem(name: deck.title ?? "", selectedItems: $selection)
+                SelectDecksItem(deck: deck, selectedItems: $selection)
             }
             .background(Color.background.ignoresSafeArea())
             .onAppear {
@@ -57,7 +57,7 @@ struct LearnCardsPage: View {
             }
             
             
-            NavigationLink(destination: FullCardViewStatic(cardList: cardList, currCard: 0, showButtons: true)) {
+            NavigationLink(destination: FullCardViewStatic(cardList: cardList, currCard: 0, deckSet: selection, showButtons: true)) {
                 Text("Learn selected").foregroundColor(Color.primary)
             }.padding(.top, 10)
 

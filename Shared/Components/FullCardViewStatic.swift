@@ -24,6 +24,7 @@ struct FullCardViewStatic: View {
     // Parameter Variables
     var cardList: FetchedResults<Card>
     @State var currCard: Int = 0
+    let deckSet: Set<Deck>?
     let showButtons: Bool
     
     // Private Variables

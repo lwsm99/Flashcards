@@ -89,9 +89,11 @@ struct DeckCardMenu: View {
         .navigationTitle("\(title)")
         .toolbar {
             ToolbarItem(placement: .automatic) {
-                Text("\(cardCount)")
-                    .foregroundColor(.gray)
+                DotsMenuButton(itemToDelete: deck)
             }
         }
     }
 }
+                        
+                           
+

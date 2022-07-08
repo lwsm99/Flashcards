@@ -21,15 +21,17 @@ struct AddCardsPage: View {
     
     // Deck Variables
     @State private var deckTitle = DeckSettings.value?.title
-    @State private var deckColor = UIColor.blue // TODO: Change Defaultcolor
+    //@State private var deckColor = Color.blue // TODO: Change Defaultcolor
     @State private var cardsOfDeck:[Card] = []
+    @State private var fetchedCards: NSSet?
+    @State private var title = ""
 
     
     var body: some View {
         VStack {
             HStack {
                 // Input for deck title
-                TextField("Deck Titel", text: Binding(get: {return deckTitle ?? ""}, set: {DeckSettings.value != nil ? changeTitle(title: $0) : saveDeck(title: $0)})).frame(height: 47)
+                TextField("Deck Titel", text: Binding(get: {return deckTitle ?? ""}, set: {changeTitle(str: $0)})).frame(height: 47)
                     .padding([.leading, .trailing], 15)
                     .background(Color.white, in: Capsule())
                 
@@ -46,6 +48,7 @@ struct AddCardsPage: View {
                         
                         // Delete button
                         Button(action: {
+                            DeckSettings.value?.removeFromDeckToCard(cardsOfDeck[card])
                             cardsOfDeck.remove(at: card)
                             cardPosition = 0
                         }) {
@@ -84,9 +87,37 @@ struct AddCardsPage: View {
                     }
                 }.padding(.bottom, 10)
             }.onAppear {
+                DeckSettings.onDeckSave = {
+                    if(DeckSettings.value == nil) {
+                        DeckSettings.value = initDeck()
+                    }
+                    // Initialize Data
+                    DeckSettings.value?.title = deckTitle
+                    
+                    
+                    for card in cardsOfDeck {
+                        
+                        card.cardToDeck = DeckSettings.value
+                        DeckSettings.value?.addToDeckToCard(card)
+                    }
+                    print("Trying to save the deck", DeckSettings.value!)
+                        // Try saving
+                        do {
+                            try viewContext.save()
+                            print("Saving success")
+                        } catch {
+                            print("Unexpected error: \(error.localizedDescription).")
+                        }
+                    DeckSettings.value = nil
+                }
                 if ( DeckSettings.value == nil ) {
-                    DeckSettings.value = initDeck()
                     cardsOfDeck.append(initCard())
+                } else {
+                    fetchedCards = (DeckSettings.value?.deckToCard)!
+                    cardsOfDeck = fetchedCards?.allObjects as? [Card] ?? []
+                    if(cardsOfDeck.isEmpty)  {
+                        cardsOfDeck.append(initCard())
+                    }
                 }
 
             }
@@ -115,31 +146,14 @@ struct AddCardsPage: View {
         }
     }
     
-    func saveDeck(title: String) {
-        // Initialize Data
-            DeckSettings.value?.title = title
-            DeckSettings.value?.color = deckColor
-            
-            
-            print("cards:::", cardsOfDeck)
-            
-            for card in cardsOfDeck {
-                card.cardToDeck = DeckSettings.value
-                DeckSettings.value?.addToDeckToCard(card)
-            }
-            
-            
-        print("Trying to save the deck", DeckSettings.value!)
-            // Try saving
-            do {
-                try viewContext.save()
-                print("Saving success")
-                DeckSettings.value = nil
-            } catch {
-                print("Unexpected error: \(error.localizedDescription).")
-            }
+
+    private func initDeck() -> Deck {
+        let deck = Deck(context: viewContext)
+        deck.id = UUID()
         
+        return deck
     }
+    
     
     
     private func initCard() -> Card {
@@ -159,12 +173,7 @@ struct AddCardsPage: View {
         return card
     }
     
-    private func initDeck() -> Deck {
-        let deck = Deck(context: viewContext)
-        deck.id = UUID()
-        
-        return deck
-    }
+    
     
     private func saveCardFront(card: Card, val: String) {
         card.front = val
@@ -174,8 +183,8 @@ struct AddCardsPage: View {
         card.back = val
     }
     
-    private func changeTitle(title: String) {
-        DeckSettings.value?.title = title
+    private func changeTitle(str: String) {
+        deckTitle = str
     }
     
     

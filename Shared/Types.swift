@@ -10,4 +10,5 @@ import Foundation
 
 class DeckSettings {
     static var value: Deck? = nil;
+    static var onDeckSave: (() -> Void)? = nil;
 }

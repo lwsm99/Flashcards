@@ -20,6 +20,8 @@ struct BlueButtonStyle: ButtonStyle {
 
 struct Footer: View {
     @State var selectedIndex = 0
+    @Environment(\.managedObjectContext) private var viewContext
+    
     let icons = [
         "house",
         "plus",
@@ -27,12 +29,18 @@ struct Footer: View {
     ]
     func middleButtonAction(index: Int) {
         if(self.selectedIndex == 1 && index == 1) {
-            print("Save all from AddCardsPage  here")
+            DeckSettings.onDeckSave!()
             self.selectedIndex = 0
-        } else{
+        } else if (self.selectedIndex == 0 && index == 1) {
             self.selectedIndex = index;
         }
+        else {
+            DeckSettings.value = nil
+            self.selectedIndex = index;
+        }
+        
     }
+    
     let middleButtonSize: CGFloat = 60
     var body: some View {
         VStack {

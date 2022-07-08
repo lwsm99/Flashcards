@@ -64,7 +64,7 @@ struct LearnCardsPage: View {
         var cardArray: [[Card]] = [[]]
         
         for (idx, deck) in selection.enumerated() {
-            cardArray.append([])
+            if(idx != 0) { cardArray.append([]) }
             for card in cardList {
                 if(card.cardToDeck == deck) {
                     cardArray[idx].append(card)

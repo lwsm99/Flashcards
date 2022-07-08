@@ -62,8 +62,8 @@ struct DeckCardMenu: View {
             ScrollView {
                 ForEach(cardList) { card in
                     if(card.cardToDeck == deck) {
-                        NavigationLink(destination: FullCardViewStatic(front: card.front!, back: card.back!, title: title, showButtons: false)) {
-                            DefaultCard(cardTitle: card.front!, cardDefinition: card.back!)
+                        NavigationLink(destination: FullCardViewStatic(front: card.front ?? "", back: card.back ?? "", title: title, showButtons: false)) {
+                            DefaultCard(cardTitle: card.front ?? "", cardDefinition: card.back ?? "")
                         }
                         .background(RoundedRectangle(cornerRadius: 10).fill(.white))
                         .foregroundColor(.black)
@@ -89,9 +89,11 @@ struct DeckCardMenu: View {
         .navigationTitle("\(title)")
         .toolbar {
             ToolbarItem(placement: .automatic) {
-                Text("\(cardCount)")
-                    .foregroundColor(.gray)
+                DotsMenuButton(itemToDelete: deck)
             }
         }
     }
 }
+                        
+                           
+

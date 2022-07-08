@@ -49,10 +49,13 @@ struct LearnCardsPage: View {
                 UITableView.appearance().backgroundColor = .clear
             }
             
-            
-            NavigationLink(destination: FullCardViewStatic(cardArray: getCardArray(), currCard: 0, deckSet: selection, showButtons: true)) {
-                Text("Learn selected").foregroundColor(Color.primary)
-            }.padding(.top, 10)
+            if(selection.count > 0) {
+                NavigationLink(destination: FullCardViewStatic(cardArray: getCardArray(), currCard: 0, deckSet: selection, showButtons: true)) {
+                    Text("Ausgewählte Decks lernen").foregroundColor(Color.primary)
+                }.padding(.top, 10)
+            } else {
+                Text("Wähle Decks aus um zu lernen").foregroundColor(Color.secondary)
+            }
 
             Spacer()
             

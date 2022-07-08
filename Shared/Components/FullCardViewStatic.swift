@@ -15,6 +15,19 @@ let GOOD = 2
 let EASY = 3
 let REVIEW_INTERVALL_MULTIPLIER = 2.05
 
+struct deckListItem: View {
+     var deckName: String
+     var cardCount: Int
+     var body: some View {
+             HStack {
+                 Text(deckName ?? "No deck name!")
+                 Spacer()
+                 Text("\(cardCount)")
+             }
+             .contentShape(Rectangle())
+     }
+ }
+
 struct FullCardViewStatic: View {
     
     // Fetch Requests
@@ -34,6 +47,8 @@ struct FullCardViewStatic: View {
     @State private var showFront: Bool = true
     @State private var showFlip: Bool = true
     @State private var finishedLearning: Bool = false
+    @State private var startPage: Bool = true
+    @State private var testDecks = ["Englisch", "Spanisch", "BWL", "Italienisch", "Englisch", "Spanisch", "Spanisch", "BWL", "Italienisch", "Englisch", "Spanisch", "Spanisch", "BWL", "Italienisch", "Englisch", "Spanisch"]
     
     var body: some View {
         VStack {
@@ -41,6 +56,23 @@ struct FullCardViewStatic: View {
                 .ignoresSafeArea()
                 .overlay(
                     VStack {
+                        if(startPage) {
+                            Text("Review-Modus")
+                                .font(.title)
+                                .bold()
+                                .padding()
+                            List(testDecks, id: \.self) {
+                                deck in
+                                deckListItem(deckName: deck, cardCount: 15)
+                            }.padding([.top, .bottom])
+                            Spacer().frame(height: 100)
+                            Button(action: {startPage = !startPage}) {
+                                Text("Jetzt ").foregroundColor(Color.primary)
+                                + Text("15").foregroundColor(Color.error)
+                                + Text(" Karten lernen!").foregroundColor(Color.primary)
+                            }.padding([.bottom, .top], 20)
+                                .font(.title2)
+                        } else {
                         if(!finishedLearning) {
                             Text("\(cardArray[currDeck][currCard].cardToDeck!.title ?? "Missing title!")")
                                 .bold()
@@ -126,6 +158,8 @@ struct FullCardViewStatic: View {
                             Button(action: {dismiss()}) {
                                 Text("Super, alles gelernt!")
                             }
+                        }
+                            
                         }
                     }
                 )

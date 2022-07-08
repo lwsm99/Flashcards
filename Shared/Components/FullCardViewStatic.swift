@@ -130,6 +130,24 @@ struct FullCardViewStatic: View {
         }
     }
     
+    func getCardCount() -> Int {
+        var count: Int = 0
+        for (idx, _) in deckSet!.enumerated() {
+            count += cardArray[idx].count
+        }
+        return count
+    }
+    
+    func getCurrCard() -> Int {
+        var currentCard: Int = currCard
+        for (idx, _) in deckSet!.enumerated() {
+            if(idx < currDeck) {
+                currentCard += cardArray[idx].count
+            }
+        }
+        return currentCard
+    }
+    
     func updateCard(card: Card, difficulty: Int) {
         
         // Set box & counters according to answer

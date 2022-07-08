@@ -40,15 +40,14 @@ struct Footer: View {
                 NavigationView {
                     switch selectedIndex {
                     case 1:
-                        AddCardsPage()
-                            .toolbar {
-                                ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
-                                    Text("App Name").bold().foregroundColor(Color.primary).textCase(.uppercase)
-                                }
-                                ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
-                                    DotsMenuButton()
-                                }
-                           }
+                        AddCardsPage().toolbar {
+                            ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
+                                Text("App Name").bold().foregroundColor(Color.primary).textCase(.uppercase)
+                            }
+                            ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
+                                DotsMenuButton(itemToDelete: nil)
+                            }
+                        }
                     case 2:
                         LearnCardsPage()
                             .toolbar {
@@ -56,7 +55,7 @@ struct Footer: View {
                                     Text("App Name").bold().foregroundColor(Color.primary).textCase(.uppercase)
                                 }
                                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
-                                    DotsMenuButton()
+                                    DotsMenuButton(itemToDelete: nil)
                                 }
                            }
                     default:
@@ -66,7 +65,7 @@ struct Footer: View {
                                     Text("App Name").bold().foregroundColor(Color.primary).textCase(.uppercase)
                                 }
                                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
-                                    DotsMenuButton()
+                                    DotsMenuButton(itemToDelete: nil)
                                 }
                            }
                     }

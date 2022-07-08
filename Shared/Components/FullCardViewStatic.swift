@@ -45,7 +45,9 @@ struct FullCardViewStatic: View {
                             Text("\(cardArray[currDeck][currCard].cardToDeck!.title ?? "Missing title!")")
                                 .bold()
                                 .font(.title)
-                            Spacer().frame(height: 60)
+                            ProgressView("", value: getCurrCard(), total: getCardCount()).accentColor(.red)
+                                .frame(width: 310)
+                                .padding()
                             Button(action: {}) {
                                 Text(showFront ? "\(cardArray[currDeck][currCard].front ?? "")" : "\(cardArray[currDeck][currCard].back ?? "")" )
                                     .frame(width: 300, height: 350)
@@ -130,19 +132,19 @@ struct FullCardViewStatic: View {
         }
     }
     
-    func getCardCount() -> Int {
-        var count: Int = 0
+    func getCardCount() -> Double {
+        var count: Double = Double(0)
         for (idx, _) in deckSet!.enumerated() {
-            count += cardArray[idx].count
+            count += Double(cardArray[idx].count)
         }
         return count
     }
     
-    func getCurrCard() -> Int {
-        var currentCard: Int = currCard
+    func getCurrCard() -> Double {
+        var currentCard: Double = Double(currCard)
         for (idx, _) in deckSet!.enumerated() {
             if(idx < currDeck) {
-                currentCard += cardArray[idx].count
+                currentCard += Double(cardArray[idx].count)
             }
         }
         return currentCard

@@ -39,7 +39,7 @@ struct DeckCardMenu: View {
              */
             // MARK: Progress
             HStack {
-                ProgressView("", value: progress, total: 100).accentColor(color)
+                ProgressView("", value: progress, total: 1).accentColor(color)
             }.padding([.leading, .trailing], 10)
             Spacer().frame(height: 20)
             

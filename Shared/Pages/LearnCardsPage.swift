@@ -56,9 +56,8 @@ struct LearnCardsPage: View {
                 UITableView.appearance().backgroundColor = .clear
             }
             
-            Button(action: {
-                
-            }) {
+            
+            NavigationLink(destination: FullCardViewStatic(cardList: cardList, currCard: 0, showButtons: true)) {
                 Text("Learn selected").foregroundColor(Color.primary)
             }.padding(.top, 10)
 

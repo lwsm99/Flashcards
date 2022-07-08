@@ -173,8 +173,6 @@ struct AddCardsPage: View {
         return card
     }
     
-    
-    
     private func saveCardFront(card: Card, val: String) {
         card.front = val
     }
@@ -186,6 +184,4 @@ struct AddCardsPage: View {
     private func changeTitle(str: String) {
         deckTitle = str
     }
-    
-    
 }

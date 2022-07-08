@@ -26,13 +26,6 @@ struct LearnCardsPage: View {
     // Variables
     @State var selection = Set<Deck>()
     @State var isSelected: Bool = true
-
-    
-    /**
-     Fetch all decks
-     Decks selected -> Fetch all cards for selected decks
-     Render card
-     */
     
     var body: some View {
         VStack {
@@ -57,7 +50,7 @@ struct LearnCardsPage: View {
             }
             
             
-            NavigationLink(destination: FullCardViewStatic(cardList: cardList, currCard: 0, deckSet: selection, showButtons: true)) {
+            NavigationLink(destination: FullCardViewStatic(cardArray: getCardArray(), currCard: 0, deckSet: selection, showButtons: true)) {
                 Text("Learn selected").foregroundColor(Color.primary)
             }.padding(.top, 10)
 
@@ -65,5 +58,18 @@ struct LearnCardsPage: View {
             
         }
         .background(Color.background)
+    }
+    
+    func getCardArray() -> [[Card]] {
+        var cardArray: [[Card]] = [[]]
+        
+        for (idx, deck) in selection.enumerated() {
+            for card in cardList {
+                if(card.cardToDeck == deck) {
+                    cardArray[idx].append(card)
+                }
+            }
+        }
+        return cardArray
     }
 }

@@ -22,13 +22,13 @@ struct FullCardViewStatic: View {
     @Environment(\.dismiss) private var dismiss
     
     // Parameter Variables
-    var cardList: FetchedResults<Card>
+    @State var cardArray: [[Card]]
     @State var currCard: Int = 0
     let deckSet: Set<Deck>?
     let showButtons: Bool
     
     // Private Variables
-    @State private var cardArray: [Card] = []
+    @State private var currDeck: Int = 0
     @State private var passedAmount: Int = 0
     @State private var failedAmount: Int = 0
     @State private var showFront: Bool = true
@@ -42,12 +42,12 @@ struct FullCardViewStatic: View {
                 .overlay(
                     VStack {
                         if(!finishedLearning) {
-                            Text("\(cardList[currCard].cardToDeck!.title ?? "Missing title!")")
+                            Text("\(cardArray[currDeck][currCard].cardToDeck!.title ?? "Missing title!")")
                                 .bold()
                                 .font(.title)
                             Spacer().frame(height: 60)
                             Button(action: {}) {
-                                Text(showFront ? "\(cardList[currCard].front ?? "")" : "\(cardList[currCard].back ?? "")" )
+                                Text(showFront ? "\(cardArray[currDeck][currCard].front ?? "")" : "\(cardArray[currDeck][currCard].back ?? "")" )
                                     .frame(width: 300, height: 350)
                                     .padding()
                                     .foregroundColor(.black)
@@ -78,36 +78,28 @@ struct FullCardViewStatic: View {
                                         // TODO: Display Progress (failedAmount & passedAmount)
                                         
                                         Button {
-                                            //if(currCard == 1) { initArray() }
-                                            //updateCard(card: cardArray[currCard], difficulty: AGAIN)
-                                            updateCard(card: cardList[currCard], difficulty: AGAIN)
+                                            updateCard(card: cardArray[currDeck][currCard], difficulty: AGAIN)
                                         } label: {
                                             Text("♻️")
                                         }.frame(width: 60, height: 60)
                                         .background(RoundedRectangle(cornerRadius: 8).fill(.white))
                                         Spacer().frame(width: 30)
                                         Button {
-                                            //if(currCard == 1) { initArray() }
-                                            //updateCard(card: cardArray[currCard], difficulty: HARD)
-                                            updateCard(card: cardList[currCard], difficulty: AGAIN)
+                                            updateCard(card: cardArray[currDeck][currCard], difficulty: HARD)
                                         } label: {
                                             Text("😐")
                                         }.frame(width: 60, height: 60)
                                             .background(RoundedRectangle(cornerRadius: 8).fill(.white))
                                         Spacer().frame(width: 30)
                                         Button {
-                                            //if(currCard == 1) { initArray() }
-                                            //updateCard(card: cardArray[currCard], difficulty: GOOD)
-                                            updateCard(card: cardList[currCard], difficulty: AGAIN)
+                                            updateCard(card: cardArray[currDeck][currCard], difficulty: GOOD)
                                         } label: {
                                             Text("🙂")
                                         }.frame(width: 60, height: 60)
                                             .background(RoundedRectangle(cornerRadius: 8).fill(.white))
                                         Spacer().frame(width: 30)
                                         Button {
-                                            //if(currCard == 1) { initArray() }
-                                            //updateCard(card: cardList[currCard], difficulty: EASY)
-                                            updateCard(card: cardList[currCard], difficulty: AGAIN)
+                                            updateCard(card: cardArray[currDeck][currCard], difficulty: EASY)
                                         } label: {
                                             Text("😄")
                                         }.frame(width: 60, height: 60)
@@ -138,12 +130,6 @@ struct FullCardViewStatic: View {
         }
     }
     
-    func initArray() {
-        for card in cardList {
-            cardArray.append(card)
-        }
-    }
-    
     func updateCard(card: Card, difficulty: Int) {
         
         // Set box & counters according to answer
@@ -151,7 +137,7 @@ struct FullCardViewStatic: View {
             card.box = 0
             card.failedCount += 1
             failedAmount += 1
-            cardArray.append(card)
+            cardArray[currDeck].append(card)
         }
         if(difficulty == HARD) {
             if(card.box == 0) { card.box += 1 }
@@ -194,14 +180,23 @@ struct FullCardViewStatic: View {
         }
         
         // Next card
-        print(cardList.count)
-        print(currCard)
-        if(currCard < (cardList.count - 1)) {
+        if(currCard < (cardArray[currDeck].count - 1)) {
+            print(cardArray[currDeck].count - 1)
             currCard += 1
             showFlip = true
             showFront = true
         } else {
-            finishedLearning = true
+            if(currDeck < (cardArray.count - 1)) {
+                print(cardArray.count - 1)
+                currDeck += 1
+                currCard = 0
+                showFlip = true
+                showFront = true
+            }
+            else {
+                finishedLearning = true
+                currDeck = 0
+            }
         }
     }
 }

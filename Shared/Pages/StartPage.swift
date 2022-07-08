@@ -36,8 +36,8 @@ struct StartPage: View {
             ScrollView {
                 VStack{
                     ForEach(deckList) { deck in
-                        NavigationLink(destination: DeckCardMenu(title: deck.title ?? "", cardCount: getCardCount(deck: deck), progress: 67, color: $bgColor1, deck: deck)) {
-                            DeckCard(color: $bgColor1, title: deck.title ?? "", subtitle: "\(getCardCount(deck: deck)) Karte(n)", progress: 67)
+                        NavigationLink(destination: DeckCardMenu(title: deck.title ?? "", cardCount: getCardCount(deck: deck), progress: getProgress(deck: deck), color: $bgColor1, deck: deck)) {
+                            DeckCard(color: $bgColor1, title: deck.title ?? "", subtitle: "\(getCardCount(deck: deck)) Karte(n)", progress: getProgress(deck: deck))
                         }.simultaneousGesture(TapGesture().onEnded { DeckSettings.value = deck })
                     }
                 }.navigationTitle("Alle Decks")
@@ -45,7 +45,25 @@ struct StartPage: View {
         }
         .background(Color.background)
     }
-    func getCardCount(deck: Deck) -> Int {
+    
+    private func getProgress(deck: Deck) -> CGFloat {
+        var learnedCount: Int = 0
+        var cardCount: Int = 0
+        
+        for card in cardList {
+            if(card.cardToDeck == deck) {
+                if(card.box != 0) {
+                    learnedCount += 1
+                }
+                cardCount += 1
+            }
+        }
+        print(learnedCount)
+        print(cardCount)
+        return CGFloat(learnedCount / cardCount)
+    }
+    
+    private func getCardCount(deck: Deck) -> Int {
         var cardCnt = 0
         
         for card in cardList {

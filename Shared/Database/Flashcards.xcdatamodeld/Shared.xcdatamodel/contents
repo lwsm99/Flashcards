@@ -8,6 +8,7 @@
         <attribute name="front" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="lastReviewed" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="nextReview" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="passedCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="cardToDeck" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Deck" inverseName="deckToCard" inverseEntity="Deck"/>
     </entity>
@@ -18,7 +19,7 @@
         <relationship name="deckToCard" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="cardToDeck" inverseEntity="Card"/>
     </entity>
     <elements>
-        <element name="Card" positionX="-473.6478881835938" positionY="4.215576171875" width="128" height="164"/>
+        <element name="Card" positionX="-473.6478881835938" positionY="4.215576171875" width="128" height="178"/>
         <element name="Deck" positionX="-250.9907836914062" positionY="15.941650390625" width="128" height="103"/>
     </elements>
 </model>

@@ -24,15 +24,8 @@ struct LearnCardsPage: View {
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Card.createdAt, ascending: true)], animation: .default) private var cardList: FetchedResults<Card>
     
     // Variables
-    @State var selection = Set<String>()
+    @State var selection = Set<Deck>()
     @State var isSelected: Bool = true
-
-    
-    /**
-     Fetch all decks
-     Decks selected -> Fetch all cards for selected decks
-     Render card
-     */
     
     var body: some View {
         VStack {
@@ -48,7 +41,7 @@ struct LearnCardsPage: View {
             
             List(deckList, id: \.self, selection: $selection) {
                 deck in
-                SelectDecksItem(name: deck.title ?? "", selectedItems: $selection)
+                SelectDecksItem(deck: deck, selectedItems: $selection)
             }
             .background(Color.background.ignoresSafeArea())
             .onAppear {
@@ -56,13 +49,31 @@ struct LearnCardsPage: View {
                 UITableView.appearance().backgroundColor = .clear
             }
             
-            Button(action: { print(selection)}) {
-                Text("Learn selected").foregroundColor(Color.primary)
-            }.padding(.top, 10)
+            if(selection.count > 0) {
+                NavigationLink(destination: FullCardViewStatic(cardArray: getCardArray(), currCard: 0, deckSet: selection, showButtons: true)) {
+                    Text("Ausgewählte Decks lernen").foregroundColor(Color.primary)
+                }.padding(.top, 10)
+            } else {
+                Text("Wähle Decks aus um zu lernen").foregroundColor(Color.secondary)
+            }
 
             Spacer()
             
         }
         .background(Color.background)
+    }
+    
+    private func getCardArray() -> [[Card]] {
+        var cardArray: [[Card]] = [[]]
+        
+        for (idx, deck) in selection.enumerated() {
+            if(idx != 0) { cardArray.append([]) }
+            for card in cardList {
+                if(card.cardToDeck == deck) {
+                    cardArray[idx].append(card)
+                }
+            }
+        }
+        return cardArray
     }
 }

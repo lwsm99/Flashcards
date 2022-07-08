@@ -24,7 +24,7 @@ struct DeckCard: View {
                     }.padding([.leading, .trailing], 10)
                     Spacer()
                 }.frame(maxWidth: .infinity)
-                ProgressView("", value: progress, total: 100).accentColor(color)
+                ProgressView("", value: progress, total: 1).accentColor(color)
             }.frame(maxWidth: .infinity).padding(16).background(Color.white).cornerRadius(20).padding([.leading, .trailing], 15)
         
     }

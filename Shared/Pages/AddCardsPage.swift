@@ -165,14 +165,13 @@ struct AddCardsPage: View {
         card.box = 0
         card.passedCount = 0
         card.failedCount = 0
-        card.lastReviewed = card.createdAt
+        card.lastReviewed = nil
+        card.nextReview = card.createdAt
         
         card.cardToDeck = DeckSettings.value
         
         return card
     }
-    
-    
     
     private func saveCardFront(card: Card, val: String) {
         card.front = val
@@ -185,6 +184,4 @@ struct AddCardsPage: View {
     private func changeTitle(str: String) {
         deckTitle = str
     }
-    
-    
 }

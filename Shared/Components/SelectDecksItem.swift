@@ -9,15 +9,15 @@ import Foundation
 import SwiftUI
 
 struct SelectDecksItem: View {
-    var name: String
-    @Binding var selectedItems: Set<String>
+    var deck: Deck
+    @Binding var selectedItems: Set<Deck>
     var isSelected: Bool {
-        selectedItems.contains(name)
+        selectedItems.contains(deck)
     }
     
     var body: some View {
         HStack {
-            Text(name)
+            Text(deck.title ?? "")
             Spacer()
             if isSelected {
                 Image(systemName: "checkmark.circle.fill").foregroundColor(Color.primary)
@@ -28,9 +28,9 @@ struct SelectDecksItem: View {
         .contentShape(Rectangle())
         .onTapGesture {
             if isSelected {
-                self.selectedItems.remove(name)
+                self.selectedItems.remove(deck)
             } else {
-                self.selectedItems.insert(name)
+                self.selectedItems.insert(deck)
             }
         }
     }

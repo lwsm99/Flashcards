@@ -48,7 +48,6 @@ struct FullCardViewStatic: View {
     @State private var showFlip: Bool = true
     @State private var finishedLearning: Bool = false
     @State private var startPage: Bool = true
-    @State private var testDecks = ["Englisch", "Spanisch", "BWL", "Italienisch", "Englisch", "Spanisch", "Spanisch", "BWL", "Italienisch", "Englisch", "Spanisch", "Spanisch", "BWL", "Italienisch", "Englisch", "Spanisch"]
     
     var body: some View {
         VStack {
@@ -56,110 +55,113 @@ struct FullCardViewStatic: View {
                 .ignoresSafeArea()
                 .overlay(
                     VStack {
+                        
                         if(startPage) {
                             Text("Review-Modus")
                                 .font(.title)
                                 .bold()
                                 .padding()
-                            List(testDecks, id: \.self) {
-                                deck in
-                                deckListItem(deckName: deck, cardCount: 15)
+                            List {
+                                ForEach(Array(deckSet!.enumerated()), id: \.offset) {
+                                    index, deck in
+                                    deckListItem(deckName: deck.title!, cardCount: cardArray[index].count)
+                                }
                             }.padding([.top, .bottom])
                             Spacer().frame(height: 100)
                             Button(action: {startPage = !startPage}) {
                                 Text("Jetzt ").foregroundColor(Color.primary)
-                                + Text("15").foregroundColor(Color.error)
+                                + Text("\(cardArray.flatMap { $0 }.count)").foregroundColor(Color.error)
                                 + Text(" Karten lernen!").foregroundColor(Color.primary)
                             }.padding([.bottom, .top], 20)
                                 .font(.title2)
                         } else {
-                        if(!finishedLearning) {
-                            Text("\(cardArray[currDeck][currCard].cardToDeck!.title ?? "Missing title!")")
-                                .bold()
-                                .font(.title)
-                            ProgressView("", value: getCurrCard(), total: getCardCount()).accentColor(.red)
-                                .frame(width: 310)
-                                .padding()
-                            Button(action: {}) {
-                                Text(showFront ? "\(cardArray[currDeck][currCard].front ?? "")" : "\(cardArray[currDeck][currCard].back ?? "")" )
-                                    .frame(width: 300, height: 350)
+                            
+                            if(!finishedLearning) {
+                                Text("\(cardArray[currDeck][currCard].cardToDeck!.title ?? "Missing title!")")
+                                    .bold()
+                                    .font(.title)
+                                ProgressView("", value: getCurrCard(), total: getCardCount()).accentColor(.red)
+                                    .frame(width: 310)
                                     .padding()
-                                    .foregroundColor(.black)
-                            }.background(RoundedRectangle(cornerRadius: 10).fill(.white))
-                            if(showButtons) {
-                                Spacer().frame(height: 30)
-                                HStack {
-                                    if(showFlip) {
-                                        Button(action: {
-                                            showFlip = !showFlip
-                                            showFront = false
-                                        }) {
-                                            Text("Flip card")
-                                                .frame(width: 300, height: 60)
+                                Button(action: {}) {
+                                    Text(showFront ? "\(cardArray[currDeck][currCard].front ?? "")" : "\(cardArray[currDeck][currCard].back ?? "")" )
+                                        .frame(width: 300, height: 350)
+                                        .padding()
+                                        .foregroundColor(.black)
+                                }.background(RoundedRectangle(cornerRadius: 10).fill(.white))
+                                if(showButtons) {
+                                    Spacer().frame(height: 30)
+                                    HStack {
+                                        if(showFlip) {
+                                            Button(action: {
+                                                showFlip = !showFlip
+                                                showFront = false
+                                            }) {
+                                                Text("Flip card")
+                                                    .frame(width: 300, height: 60)
+                                                    .background(RoundedRectangle(cornerRadius: 8).fill(.white))
+                                            }
+                                        }
+                                        else {
+                                            
+                                            // TODO: Link to this page via LearnCardsPage
+                                            // TODO: Only give cardList of selected Decks in LearnCardsPage
+                                            
+                                            // TODO: First show "Front" with "Flip Card", when flipping show Solution + Answer Buttons
+                                            // TODO: After Review, switch to next card (Almost works, need to show finish screen when currCard == cardArray.count)
+                                            // TODO: Initialize Card Array and use that instead of cardList, so we can append
+                                            
+                                            // TODO: Display Progress(bar?) (currCard/cardArray.count)
+                                            // TODO: Display Progress (failedAmount & passedAmount)
+                                            
+                                            Button {
+                                                updateCard(card: cardArray[currDeck][currCard], difficulty: AGAIN)
+                                            } label: {
+                                                Text("♻️")
+                                            }.frame(width: 60, height: 60)
+                                            .background(RoundedRectangle(cornerRadius: 8).fill(.white))
+                                            Spacer().frame(width: 30)
+                                            Button {
+                                                updateCard(card: cardArray[currDeck][currCard], difficulty: HARD)
+                                            } label: {
+                                                Text("😐")
+                                            }.frame(width: 60, height: 60)
+                                                .background(RoundedRectangle(cornerRadius: 8).fill(.white))
+                                            Spacer().frame(width: 30)
+                                            Button {
+                                                updateCard(card: cardArray[currDeck][currCard], difficulty: GOOD)
+                                            } label: {
+                                                Text("🙂")
+                                            }.frame(width: 60, height: 60)
+                                                .background(RoundedRectangle(cornerRadius: 8).fill(.white))
+                                            Spacer().frame(width: 30)
+                                            Button {
+                                                updateCard(card: cardArray[currDeck][currCard], difficulty: EASY)
+                                            } label: {
+                                                Text("😄")
+                                            }.frame(width: 60, height: 60)
                                                 .background(RoundedRectangle(cornerRadius: 8).fill(.white))
                                         }
+                                        
                                     }
-                                    else {
-                                        
-                                        // TODO: Link to this page via LearnCardsPage
-                                        // TODO: Only give cardList of selected Decks in LearnCardsPage
-                                        
-                                        // TODO: First show "Front" with "Flip Card", when flipping show Solution + Answer Buttons
-                                        // TODO: After Review, switch to next card (Almost works, need to show finish screen when currCard == cardArray.count)
-                                        // TODO: Initialize Card Array and use that instead of cardList, so we can append
-                                        
-                                        // TODO: Display Progress(bar?) (currCard/cardArray.count)
-                                        // TODO: Display Progress (failedAmount & passedAmount)
-                                        
-                                        Button {
-                                            updateCard(card: cardArray[currDeck][currCard], difficulty: AGAIN)
-                                        } label: {
-                                            Text("♻️")
-                                        }.frame(width: 60, height: 60)
-                                        .background(RoundedRectangle(cornerRadius: 8).fill(.white))
-                                        Spacer().frame(width: 30)
-                                        Button {
-                                            updateCard(card: cardArray[currDeck][currCard], difficulty: HARD)
-                                        } label: {
-                                            Text("😐")
-                                        }.frame(width: 60, height: 60)
-                                            .background(RoundedRectangle(cornerRadius: 8).fill(.white))
-                                        Spacer().frame(width: 30)
-                                        Button {
-                                            updateCard(card: cardArray[currDeck][currCard], difficulty: GOOD)
-                                        } label: {
-                                            Text("🙂")
-                                        }.frame(width: 60, height: 60)
-                                            .background(RoundedRectangle(cornerRadius: 8).fill(.white))
-                                        Spacer().frame(width: 30)
-                                        Button {
-                                            updateCard(card: cardArray[currDeck][currCard], difficulty: EASY)
-                                        } label: {
-                                            Text("😄")
-                                        }.frame(width: 60, height: 60)
+                                    Spacer().frame(height: 40)
+                                }
+                                if(!showButtons) {
+                                    Spacer().frame(height: 40)
+                                    Button(action: {showFlip = !showFlip; showFront = !showFront}) {
+                                        Text(showFlip ? "Show back" : "Show front")
+                                            .frame(width: 330, height: 60)
                                             .background(RoundedRectangle(cornerRadius: 8).fill(.white))
                                     }
-                                    
+                                    Spacer().frame(height: 100)
                                 }
-                                Spacer().frame(height: 40)
+                                
                             }
-                            if(!showButtons) {
-                                Spacer().frame(height: 40)
-                                Button(action: {showFlip = !showFlip; showFront = !showFront}) {
-                                    Text(showFlip ? "Show back" : "Show front")
-                                        .frame(width: 330, height: 60)
-                                        .background(RoundedRectangle(cornerRadius: 8).fill(.white))
+                            else {
+                                Button(action: {dismiss()}) {
+                                    Text("Super, alles gelernt!")
                                 }
-                                Spacer().frame(height: 100)
                             }
-                            
-                        }
-                        else {
-                            Button(action: {dismiss()}) {
-                                Text("Super, alles gelernt!")
-                            }
-                        }
-                            
                         }
                     }
                 )

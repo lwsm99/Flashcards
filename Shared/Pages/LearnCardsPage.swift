@@ -60,10 +60,11 @@ struct LearnCardsPage: View {
         .background(Color.background)
     }
     
-    func getCardArray() -> [[Card]] {
+    private func getCardArray() -> [[Card]] {
         var cardArray: [[Card]] = [[]]
         
         for (idx, deck) in selection.enumerated() {
+            cardArray.append([])
             for card in cardList {
                 if(card.cardToDeck == deck) {
                     cardArray[idx].append(card)

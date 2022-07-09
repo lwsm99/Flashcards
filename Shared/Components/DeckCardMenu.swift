@@ -73,30 +73,66 @@ struct DeckCardMenu: View {
                             .frame(width: 315, alignment: .leading)
                             .padding(.bottom, 10)
 
-                        Text("Wiederholt:")
+                        Text("Boxen:")
                             .font(.headline)
                             .frame(width: 315, alignment: .leading)
                             .padding(.bottom, 10)
-                        HStack {
+                        VStack {
                             VStack {
-                                Text("1 Mal")
-                                Text("\(getReviewedOnceCardCount())")
+                                Text("Neu/Failed")
+                                HStack {
+                                    ProgressView("", value: getBoxCardCount(deck: deck, box: 0), total: getMaxBoxCardCount(deck: deck))
+                                        .accentColor(.red)
+                                        .scaleEffect(x: 1, y: 2)
+                                    Text("\(Int(getBoxCardCount(deck: deck, box: 0)))")
+                                    //Count
+                                }
                             }
-                            .padding([.bottom, .leading, .trailing])
                             VStack {
-                                Text("2 Mal")
-                                Text("\(getReviewedTwiceCardCount())")
+                                Text("Box 1")
+                                HStack {
+                                    ProgressView("", value: getBoxCardCount(deck: deck, box: 1), total: getMaxBoxCardCount(deck: deck))
+                                        .accentColor(.green)
+                                        .scaleEffect(x: 1, y: 2)
+                                    Text("\(Int(getBoxCardCount(deck: deck, box: 1)))")
+                                    //Count
+                                }
                             }
-                            .padding([.bottom, .leading, .trailing])
                             VStack {
-                                Text("3+ Mal")
-                                Text("\(getReviewedThricePlusCardCount())")
+                                Text("Box 2")
+                                HStack {
+                                    ProgressView("", value: getBoxCardCount(deck: deck, box: 2), total: getMaxBoxCardCount(deck: deck))
+                                        .accentColor(.green)
+                                        .scaleEffect(x: 1, y: 2)
+                                    Text("\(Int(getBoxCardCount(deck: deck, box: 2)))")
+                                    //Count
+                                }
                             }
-                            .padding([.bottom, .leading, .trailing])
+                            VStack {
+                                Text("Box 3")
+                                HStack {
+                                    ProgressView("", value: getBoxCardCount(deck: deck, box: 3), total: getMaxBoxCardCount(deck: deck))
+                                        .accentColor(.green)
+                                        .scaleEffect(x: 1, y: 2)
+                                    Text("\(Int(getBoxCardCount(deck: deck, box: 3)))")
+                                    //Count
+                                }
+                            }
+                            VStack {
+                                Text("Box 4")
+                                HStack {
+                                    ProgressView("", value: getBoxCardCount(deck: deck, box: 4), total: getMaxBoxCardCount(deck: deck))
+                                        .accentColor(.green)
+                                        .scaleEffect(x: 1, y: 2)
+                                    Text("\(Int(getBoxCardCount(deck: deck, box: 4)))")
+                                    //Count
+                                }
+                            }
                         }
-
                     }
+                    .frame(width: 315).background(RoundedRectangle(cornerRadius: 10).fill(.blue))
                     .foregroundColor(.white)
+                    .padding()
                 }
             }
             .background(RoundedRectangle(cornerRadius: 10).fill(.blue))
@@ -175,7 +211,7 @@ struct DeckCardMenu: View {
         return counter
     }
     
-    private func getBoxCardCount(deck: Deck, box: Int) -> Int {
+    private func getBoxCardCount(deck: Deck, box: Int) -> Double {
         var counter = 0
         for card in cardList {
             if(card.cardToDeck == deck && box >= 4 && Int(floor(card.box)) >= box) {
@@ -185,17 +221,17 @@ struct DeckCardMenu: View {
                 counter += 1
             }
         }
-        return counter
+        return Double(counter)
     }
     
-    private func getMaxBoxCardCount(deck: Deck) -> Int {
+    private func getMaxBoxCardCount(deck: Deck) -> Double {
         var counter = getBoxCardCount(deck: deck, box: 0)
         for box in 1...4 {
             if(getBoxCardCount(deck: deck, box: box) > counter) {
                 counter = getBoxCardCount(deck: deck, box: box)
             }
         }
-        return counter
+        return Double(counter)
     }
 }
                         

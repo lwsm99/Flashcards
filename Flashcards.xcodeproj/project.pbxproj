@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0934CE0928704CB10078BBDC /* DeckCardMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0934CE0828704CB10078BBDC /* DeckCardMenu.swift */; };
+		0934CE0B28704CDA0078BBDC /* DefaultCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0934CE0A28704CDA0078BBDC /* DefaultCard.swift */; };
+		0934CE11287058BF0078BBDC /* FullCardViewStatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0934CE10287058BF0078BBDC /* FullCardViewStatic.swift */; };
+		099C53732879B56A00C4384E /* CardInDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099C53722879B56A00C4384E /* CardInDeck.swift */; };
 		A084E8F62857665A0045414B /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084E8F52857665A0045414B /* Tests_iOS.swift */; };
 		A084E8F82857665A0045414B /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084E8F72857665A0045414B /* Tests_iOSLaunchTests.swift */; };
 		A084E9022857665A0045414B /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084E9012857665A0045414B /* Tests_macOS.swift */; };
@@ -21,6 +25,18 @@
 		A084E90C2857665A0045414B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084E8DE285766580045414B /* Persistence.swift */; };
 		A084E90D2857665A0045414B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A084E8DF2857665A0045414B /* Assets.xcassets */; };
 		A084E90E2857665A0045414B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A084E8DF2857665A0045414B /* Assets.xcassets */; };
+		D40D0542286B119000D473FE /* SearchInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D0541286B119000D473FE /* SearchInput.swift */; };
+		D40D0544286B214900D473FE /* SelectDecksItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D0543286B214900D473FE /* SelectDecksItem.swift */; };
+		D410A9A1286097AD00C1E939 /* StartPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410A9A0286097AD00C1E939 /* StartPage.swift */; };
+		D410A9A328609A7F00C1E939 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410A9A228609A7F00C1E939 /* Footer.swift */; };
+		D41C685228608AF100FF0E78 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41C685128608AF100FF0E78 /* Extensions.swift */; };
+		D41C685328608AF100FF0E78 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41C685128608AF100FF0E78 /* Extensions.swift */; };
+		D45B8AC42876FD5A00330406 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B8AC32876FD5A00330406 /* Types.swift */; };
+		D45B8AC52876FD5A00330406 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B8AC32876FD5A00330406 /* Types.swift */; };
+		D47CDB5A2861CB560073BEEF /* AddCardsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47CDB592861CB560073BEEF /* AddCardsPage.swift */; };
+		D47CDB5C2861CBF60073BEEF /* LearnCardsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47CDB5B2861CBF60073BEEF /* LearnCardsPage.swift */; };
+		D4BE11472861EE6A00370EC5 /* DeckCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE11462861EE6A00370EC5 /* DeckCard.swift */; };
+		D4E7BF1D2861E26600EFFDBF /* DotsMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E7BF1C2861E26600EFFDBF /* DotsMenuButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0934CE0828704CB10078BBDC /* DeckCardMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCardMenu.swift; sourceTree = "<group>"; };
+		0934CE0A28704CDA0078BBDC /* DefaultCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCard.swift; sourceTree = "<group>"; };
+		0934CE10287058BF0078BBDC /* FullCardViewStatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullCardViewStatic.swift; sourceTree = "<group>"; };
+		099C53722879B56A00C4384E /* CardInDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInDeck.swift; sourceTree = "<group>"; };
 		A084E8DB285766580045414B /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		A084E8DC285766580045414B /* FlashcardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsApp.swift; sourceTree = "<group>"; };
 		A084E8DD285766580045414B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +75,16 @@
 		A084E8FD2857665A0045414B /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A084E9012857665A0045414B /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		A084E9032857665A0045414B /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		D40D0541286B119000D473FE /* SearchInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInput.swift; sourceTree = "<group>"; };
+		D40D0543286B214900D473FE /* SelectDecksItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDecksItem.swift; sourceTree = "<group>"; };
+		D410A9A0286097AD00C1E939 /* StartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartPage.swift; path = Shared/Pages/StartPage.swift; sourceTree = SOURCE_ROOT; };
+		D410A9A228609A7F00C1E939 /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Footer.swift; path = Shared/Components/Footer.swift; sourceTree = SOURCE_ROOT; };
+		D41C685128608AF100FF0E78 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D45B8AC32876FD5A00330406 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		D47CDB592861CB560073BEEF /* AddCardsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddCardsPage.swift; path = Shared/Pages/AddCardsPage.swift; sourceTree = SOURCE_ROOT; };
+		D47CDB5B2861CBF60073BEEF /* LearnCardsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LearnCardsPage.swift; path = Shared/Pages/LearnCardsPage.swift; sourceTree = SOURCE_ROOT; };
+		D4BE11462861EE6A00370EC5 /* DeckCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeckCard.swift; path = Shared/Components/DeckCard.swift; sourceTree = SOURCE_ROOT; };
+		D4E7BF1C2861E26600EFFDBF /* DotsMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DotsMenuButton.swift; path = Shared/Components/DotsMenuButton.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,11 +133,14 @@
 		A084E8D9285766580045414B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				A084E91D2868CDC40045414B /* Database */,
+				D4365A892862113E000E0623 /* Components */,
+				D4365A8828621120000E0623 /* Pages */,
 				A084E8DC285766580045414B /* FlashcardsApp.swift */,
 				A084E8DD285766580045414B /* ContentView.swift */,
-				A084E8DE285766580045414B /* Persistence.swift */,
 				A084E8DF2857665A0045414B /* Assets.xcassets */,
-				A084E8DA285766580045414B /* Flashcards.xcdatamodeld */,
+				D41C685128608AF100FF0E78 /* Extensions.swift */,
+				D45B8AC32876FD5A00330406 /* Types.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -147,6 +180,41 @@
 				A084E9032857665A0045414B /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		A084E91D2868CDC40045414B /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				A084E8DA285766580045414B /* Flashcards.xcdatamodeld */,
+				A084E8DE285766580045414B /* Persistence.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		D4365A8828621120000E0623 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				D410A9A0286097AD00C1E939 /* StartPage.swift */,
+				D47CDB592861CB560073BEEF /* AddCardsPage.swift */,
+				D47CDB5B2861CBF60073BEEF /* LearnCardsPage.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		D4365A892862113E000E0623 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D410A9A228609A7F00C1E939 /* Footer.swift */,
+				D4E7BF1C2861E26600EFFDBF /* DotsMenuButton.swift */,
+				D4BE11462861EE6A00370EC5 /* DeckCard.swift */,
+				D40D0541286B119000D473FE /* SearchInput.swift */,
+				D40D0543286B214900D473FE /* SelectDecksItem.swift */,
+				0934CE0828704CB10078BBDC /* DeckCardMenu.swift */,
+				0934CE0A28704CDA0078BBDC /* DefaultCard.swift */,
+				0934CE10287058BF0078BBDC /* FullCardViewStatic.swift */,
+				099C53722879B56A00C4384E /* CardInDeck.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,10 +375,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D47CDB5A2861CB560073BEEF /* AddCardsPage.swift in Sources */,
+				099C53732879B56A00C4384E /* CardInDeck.swift in Sources */,
+				D41C685228608AF100FF0E78 /* Extensions.swift in Sources */,
+				D40D0542286B119000D473FE /* SearchInput.swift in Sources */,
+				D45B8AC42876FD5A00330406 /* Types.swift in Sources */,
+				D410A9A1286097AD00C1E939 /* StartPage.swift in Sources */,
 				A084E9072857665A0045414B /* FlashcardsApp.swift in Sources */,
+				0934CE11287058BF0078BBDC /* FullCardViewStatic.swift in Sources */,
+				D4BE11472861EE6A00370EC5 /* DeckCard.swift in Sources */,
 				A084E90B2857665A0045414B /* Persistence.swift in Sources */,
+				D410A9A328609A7F00C1E939 /* Footer.swift in Sources */,
 				A084E9052857665A0045414B /* Flashcards.xcdatamodeld in Sources */,
 				A084E9092857665A0045414B /* ContentView.swift in Sources */,
+				D4E7BF1D2861E26600EFFDBF /* DotsMenuButton.swift in Sources */,
+				D40D0544286B214900D473FE /* SelectDecksItem.swift in Sources */,
+				0934CE0B28704CDA0078BBDC /* DefaultCard.swift in Sources */,
+				D47CDB5C2861CBF60073BEEF /* LearnCardsPage.swift in Sources */,
+				0934CE0928704CB10078BBDC /* DeckCardMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,8 +400,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41C685328608AF100FF0E78 /* Extensions.swift in Sources */,
 				A084E9082857665A0045414B /* FlashcardsApp.swift in Sources */,
 				A084E90C2857665A0045414B /* Persistence.swift in Sources */,
+				D45B8AC52876FD5A00330406 /* Types.swift in Sources */,
 				A084E9062857665A0045414B /* Flashcards.xcdatamodeld in Sources */,
 				A084E90A2857665A0045414B /* ContentView.swift in Sources */,
 			);
@@ -412,6 +496,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = test;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -463,6 +548,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = test;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
@@ -475,7 +561,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38GU796C59;
+				DEVELOPMENT_TEAM = R84X2QSH2K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -489,7 +575,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Swift.Flashcards;
+				PRODUCT_BUNDLE_IDENTIFIER = THM.Swift.Flashcards;
 				PRODUCT_NAME = Flashcards;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -505,7 +591,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38GU796C59;
+				DEVELOPMENT_TEAM = R84X2QSH2K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -519,7 +605,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Swift.Flashcards;
+				PRODUCT_BUNDLE_IDENTIFIER = THM.Swift.Flashcards;
 				PRODUCT_NAME = Flashcards;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -538,7 +624,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38GU796C59;
+				DEVELOPMENT_TEAM = R84X2QSH2K;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -549,7 +635,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Swift.Flashcards;
+				PRODUCT_BUNDLE_IDENTIFIER = THM.Swift.Flashcards;
 				PRODUCT_NAME = Flashcards;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -566,7 +652,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38GU796C59;
+				DEVELOPMENT_TEAM = R84X2QSH2K;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -577,7 +663,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Swift.Flashcards;
+				PRODUCT_BUNDLE_IDENTIFIER = THM.Swift.Flashcards;
 				PRODUCT_NAME = Flashcards;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -591,7 +677,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38GU796C59;
+				DEVELOPMENT_TEAM = R84X2QSH2K;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MARKETING_VERSION = 1.0;
@@ -611,7 +697,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38GU796C59;
+				DEVELOPMENT_TEAM = R84X2QSH2K;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MARKETING_VERSION = 1.0;
@@ -632,7 +718,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38GU796C59;
+				DEVELOPMENT_TEAM = R84X2QSH2K;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
@@ -651,7 +737,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 38GU796C59;
+				DEVELOPMENT_TEAM = R84X2QSH2K;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;

@@ -26,6 +26,7 @@ struct LearnCardsPage: View {
     // Variables
     @State var selection = Set<Deck>()
     @State var isSelected: Bool = true
+    @State var freeLearn: Bool = false
     
     var body: some View {
         VStack {
@@ -37,8 +38,8 @@ struct LearnCardsPage: View {
                 Text("\(selection.count)").font(Font.body.bold()).foregroundColor(Color.error)
                 Text("Ausgewählt")
             }.frame(maxWidth: .infinity, alignment: .trailing).padding([.leading, .trailing], 30).padding(.top, 10)
-            
-            
+            Toggle("Free-Learn Modus", isOn: $freeLearn)
+               .padding([.top, .leading, .trailing])
             List(deckList, id: \.self, selection: $selection) {
                 deck in
                 SelectDecksItem(deck: deck, selectedItems: $selection)
@@ -50,7 +51,7 @@ struct LearnCardsPage: View {
             }
             
             if(selection.count > 0) {
-                NavigationLink(destination: FullCardViewStatic(cardArray: getCardArray(), currCard: 0, deckSet: selection, showButtons: true)) {
+                NavigationLink(destination: FullCardViewStatic(cardArray: freeLearn ? getCardArrayFree() : getCardArraySRS(), currCard: 0, deckSet: selection, showButtons: true)) {
                     Text("Ausgewählte Decks lernen").foregroundColor(Color.primary)
                 }.padding(.top, 10)
             } else {
@@ -63,7 +64,7 @@ struct LearnCardsPage: View {
         .background(Color.background)
     }
     
-    private func getCardArray() -> [[Card]] {
+    private func getCardArrayFree() -> [[Card]] {
         var cardArray: [[Card]] = [[]]
         
         for (idx, deck) in selection.enumerated() {
@@ -74,6 +75,27 @@ struct LearnCardsPage: View {
                 }
             }
         }
+        return cardArray
+    }
+    
+    private func getCardArraySRS() -> [[Card]] {
+        var cardArray: [[Card]] = [[]]
+        
+        for (idx, deck) in selection.enumerated() {
+            if(idx != 0) { cardArray.append([]) }
+            for card in cardList {
+                if(card.cardToDeck == deck) {
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "dd/MM/yyyy"
+                    let firstDate = card.nextReview
+                    let secondDate = Date.now
+                    if (!(firstDate!.compare(secondDate) == .orderedDescending)) {
+                        cardArray[idx].append(card)
+                    }
+                }
+            }
+        }
+        print(Date.now)
         return cardArray
     }
 }

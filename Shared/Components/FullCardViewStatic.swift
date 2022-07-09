@@ -19,12 +19,14 @@ struct deckListItem: View {
      var deckName: String
      var cardCount: Int
      var body: some View {
+         if(cardCount > 0) {
              HStack {
                  Text(deckName ?? "No deck name!")
                  Spacer()
                  Text("\(cardCount)")
              }
              .contentShape(Rectangle())
+         } 
      }
  }
 

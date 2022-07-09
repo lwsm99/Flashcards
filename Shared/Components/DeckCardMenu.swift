@@ -175,28 +175,14 @@ struct DeckCardMenu: View {
         return counter
     }
     
-    private func getReviewedOnceCardCount() -> Int {
+    private func getBoxCardCount(deck: Deck, box: Int) -> Int {
         var counter = 0
-        for (idx) in cardList.indices {
-            if(cardList[idx].cardToDeck == deck) {
+        for card in cardList {
+            if(card.cardToDeck == deck && box >= 5 && Int(floor(card.box)) >= box) {
+                counter += 1
             }
-        }
-        return counter
-    }
-    
-    private func getReviewedTwiceCardCount() -> Int {
-        var counter = 0
-        for (idx) in cardList.indices {
-            if(cardList[idx].cardToDeck == deck) {
-            }
-        }
-        return counter
-    }
-    
-    private func getReviewedThricePlusCardCount() -> Int {
-        var counter = 0
-        for (idx) in cardList.indices {
-            if(cardList[idx].cardToDeck == deck) {
+            else if(card.cardToDeck == deck && Int(floor(card.box)) == box) {
+                counter += 1 
             }
         }
         return counter

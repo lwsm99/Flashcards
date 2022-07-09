@@ -175,13 +175,11 @@ struct FullCardViewStatic: View {
                 cardArray[currDeck].append(card)
             }
             if(currCard < (cardArray[currDeck].count - 1)) {
-                print(cardArray[currDeck].count - 1)
                 currCard += 1
                 showFlip = true
                 showFront = true
             } else {
                 if(currDeck < (cardArray.count - 1)) {
-                    print(cardArray.count - 1)
                     currDeck += 1
                     currCard = 0
                     showFlip = true
@@ -243,13 +241,11 @@ struct FullCardViewStatic: View {
         
         // Next card
         if(currCard < (cardArray[currDeck].count - 1)) {
-            print(cardArray[currDeck].count - 1)
             currCard += 1
             showFlip = true
             showFront = true
         } else {
             if(currDeck < (cardArray.count - 1)) {
-                print(cardArray.count - 1)
                 currDeck += 1
                 currCard = 0
                 showFlip = true

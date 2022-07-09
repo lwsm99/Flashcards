@@ -58,10 +58,6 @@ struct StartPage: View {
                 cardCount += 1
             }
         }
-        print("---")
-        print(learnedCount)
-        print(cardCount)
-        print(Double(Double(learnedCount) / Double(cardCount)))
         return Double(Double(learnedCount) / Double(cardCount))
     }
     

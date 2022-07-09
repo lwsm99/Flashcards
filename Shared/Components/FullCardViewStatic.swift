@@ -41,6 +41,7 @@ struct FullCardViewStatic: View {
     @State var currCard: Int = 0
     let deckSet: Set<Deck>?
     let showButtons: Bool
+    let freeLearn: Bool
     
     // Private Variables
     @State private var currDeck: Int = 0
@@ -189,7 +190,30 @@ struct FullCardViewStatic: View {
     }
     
     func updateCard(card: Card, difficulty: Int) {
-        
+        if(freeLearn) {
+            if(difficulty == AGAIN) {
+                cardArray[currDeck].append(card)
+            }
+            if(currCard < (cardArray[currDeck].count - 1)) {
+                print(cardArray[currDeck].count - 1)
+                currCard += 1
+                showFlip = true
+                showFront = true
+            } else {
+                if(currDeck < (cardArray.count - 1)) {
+                    print(cardArray.count - 1)
+                    currDeck += 1
+                    currCard = 0
+                    showFlip = true
+                    showFront = true
+                }
+                else {
+                    finishedLearning = true
+                    currDeck = 0
+                }
+            }
+            return
+        }
         // Set box & counters according to answer
         if(difficulty == AGAIN) {
             card.box = 0

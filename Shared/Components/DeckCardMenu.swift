@@ -107,7 +107,7 @@ struct DeckCardMenu: View {
             ScrollView {
                 ForEach(cardList.indices, id: \.self) { idx in
                     if(cardList[idx].cardToDeck == deck) {
-                        NavigationLink(destination: FullCardViewStatic(cardArray: getCardArray(), currCard: idx, deckSet: nil, showButtons: false)) {
+                        NavigationLink(destination: FullCardViewStatic(cardArray: getCardArray(), currCard: idx, deckSet: nil, showButtons: false, freeLearn: true)) {
                             DefaultCard(cardTitle: cardList[idx].front ?? "", cardDefinition: cardList[idx].back ?? "")
                         }
                         .background(RoundedRectangle(cornerRadius: 10).fill(.white))

@@ -51,7 +51,7 @@ struct LearnCardsPage: View {
             }
             
             if(selection.count > 0) {
-                NavigationLink(destination: FullCardViewStatic(cardArray: freeLearn ? getCardArrayFree() : getCardArraySRS(), currCard: 0, deckSet: selection, showButtons: true)) {
+                NavigationLink(destination: FullCardViewStatic(cardArray: freeLearn ? getCardArrayFree() : getCardArraySRS(), currCard: 0, deckSet: selection, showButtons: true, freeLearn: freeLearn)) {
                     Text("Ausgewählte Decks lernen").foregroundColor(Color.primary)
                 }.padding(.top, 10)
             } else {

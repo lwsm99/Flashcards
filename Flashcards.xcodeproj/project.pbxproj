@@ -10,6 +10,7 @@
 		0934CE0928704CB10078BBDC /* DeckCardMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0934CE0828704CB10078BBDC /* DeckCardMenu.swift */; };
 		0934CE0B28704CDA0078BBDC /* DefaultCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0934CE0A28704CDA0078BBDC /* DefaultCard.swift */; };
 		0934CE11287058BF0078BBDC /* FullCardViewStatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0934CE10287058BF0078BBDC /* FullCardViewStatic.swift */; };
+		099C53732879B56A00C4384E /* CardInDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099C53722879B56A00C4384E /* CardInDeck.swift */; };
 		A084E8F62857665A0045414B /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084E8F52857665A0045414B /* Tests_iOS.swift */; };
 		A084E8F82857665A0045414B /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084E8F72857665A0045414B /* Tests_iOSLaunchTests.swift */; };
 		A084E9022857665A0045414B /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084E9012857665A0045414B /* Tests_macOS.swift */; };
@@ -59,6 +60,7 @@
 		0934CE0828704CB10078BBDC /* DeckCardMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCardMenu.swift; sourceTree = "<group>"; };
 		0934CE0A28704CDA0078BBDC /* DefaultCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCard.swift; sourceTree = "<group>"; };
 		0934CE10287058BF0078BBDC /* FullCardViewStatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullCardViewStatic.swift; sourceTree = "<group>"; };
+		099C53722879B56A00C4384E /* CardInDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInDeck.swift; sourceTree = "<group>"; };
 		A084E8DB285766580045414B /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		A084E8DC285766580045414B /* FlashcardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsApp.swift; sourceTree = "<group>"; };
 		A084E8DD285766580045414B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				0934CE0828704CB10078BBDC /* DeckCardMenu.swift */,
 				0934CE0A28704CDA0078BBDC /* DefaultCard.swift */,
 				0934CE10287058BF0078BBDC /* FullCardViewStatic.swift */,
+				099C53722879B56A00C4384E /* CardInDeck.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D47CDB5A2861CB560073BEEF /* AddCardsPage.swift in Sources */,
+				099C53732879B56A00C4384E /* CardInDeck.swift in Sources */,
 				D41C685228608AF100FF0E78 /* Extensions.swift in Sources */,
 				D40D0542286B119000D473FE /* SearchInput.swift in Sources */,
 				D45B8AC42876FD5A00330406 /* Types.swift in Sources */,

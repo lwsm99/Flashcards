@@ -178,11 +178,21 @@ struct DeckCardMenu: View {
     private func getBoxCardCount(deck: Deck, box: Int) -> Int {
         var counter = 0
         for card in cardList {
-            if(card.cardToDeck == deck && box >= 5 && Int(floor(card.box)) >= box) {
+            if(card.cardToDeck == deck && box >= 4 && Int(floor(card.box)) >= box) {
                 counter += 1
             }
             else if(card.cardToDeck == deck && Int(floor(card.box)) == box) {
-                counter += 1 
+                counter += 1
+            }
+        }
+        return counter
+    }
+    
+    private func getMaxBoxCardCount(deck: Deck) -> Int {
+        var counter = getBoxCardCount(deck: deck, box: 0)
+        for box in 1...4 {
+            if(getBoxCardCount(deck: deck, box: box) > counter) {
+                counter = getBoxCardCount(deck: deck, box: box)
             }
         }
         return counter

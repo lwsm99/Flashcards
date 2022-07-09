@@ -46,7 +46,7 @@ struct StartPage: View {
         .background(Color.background)
     }
     
-    private func getProgress(deck: Deck) -> CGFloat {
+    private func getProgress(deck: Deck) -> Double {
         var learnedCount: Int = 0
         var cardCount: Int = 0
         
@@ -58,9 +58,7 @@ struct StartPage: View {
                 cardCount += 1
             }
         }
-        print(learnedCount)
-        print(cardCount)
-        return CGFloat(learnedCount / cardCount)
+        return Double(Double(learnedCount) / Double(cardCount))
     }
     
     private func getCardCount(deck: Deck) -> Int {

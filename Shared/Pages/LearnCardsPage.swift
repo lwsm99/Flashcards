@@ -128,12 +128,10 @@ struct LearnCardsPage: View {
                 let firstDate = card.nextReview
                 if(card.cardToDeck == deck && !(firstDate!.compare(secondDate) == .orderedDescending)) {
                     selectionSRS.append(deck)
-                    //print(deck)
                     break
                 }
             }
         }
-        print(selectionSRS.count)
         return selectionSRS
     }
 }

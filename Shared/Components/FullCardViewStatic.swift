@@ -21,7 +21,7 @@ struct deckListItem: View {
      var body: some View {
          if(cardCount > 0) {
              HStack {
-                 Text(deckName ?? "No deck name!")
+                 Text(deckName)
                  Spacer()
                  Text("\(cardCount)")
              }
@@ -101,7 +101,7 @@ struct FullCardViewStatic: View {
                                             showFlip = !showFlip
                                             showFront = false
                                         }) {
-                                            Text("Flip card")
+                                            Text("Karte umdrehen")
                                                 .frame(width: 300, height: 60)
                                                 .background(RoundedRectangle(cornerRadius: 8).fill(.white))
                                         }
@@ -175,13 +175,11 @@ struct FullCardViewStatic: View {
                 cardArray[currDeck].append(card)
             }
             if(currCard < (cardArray[currDeck].count - 1)) {
-                print(cardArray[currDeck].count - 1)
                 currCard += 1
                 showFlip = true
                 showFront = true
             } else {
                 if(currDeck < (cardArray.count - 1)) {
-                    print(cardArray.count - 1)
                     currDeck += 1
                     currCard = 0
                     showFlip = true
@@ -243,13 +241,11 @@ struct FullCardViewStatic: View {
         
         // Next card
         if(currCard < (cardArray[currDeck].count - 1)) {
-            print(cardArray[currDeck].count - 1)
             currCard += 1
             showFlip = true
             showFront = true
         } else {
             if(currDeck < (cardArray.count - 1)) {
-                print(cardArray.count - 1)
                 currDeck += 1
                 currCard = 0
                 showFlip = true

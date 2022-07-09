@@ -41,7 +41,7 @@ struct CardInDeck: View {
                         Button(action: {
                             showFront = !showFront
                         }) {
-                            Text(showFront ? "Show back" : "Show front")
+                            Text(showFront ? "Rückseite zeigen" : "Vorderseite zeigen")
                                 .frame(width: 320, height: 60)
                                 .background(RoundedRectangle(cornerRadius: 8).fill(.white))
                                 .padding()

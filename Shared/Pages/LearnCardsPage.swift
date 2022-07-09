@@ -25,6 +25,7 @@ struct LearnCardsPage: View {
     
     // Variables
     @State var selection = Set<Deck>()
+    @State var selectionSRS = Set<Deck>()
     @State var isSelected: Bool = true
     @State var freeLearn: Bool = false
     
@@ -35,31 +36,48 @@ struct LearnCardsPage: View {
             SearchInput()
             
             HStack {
-                Text("\(selection.count)").font(Font.body.bold()).foregroundColor(Color.error)
+                Text(freeLearn ? "\(selection.count)" : "\(selectionSRS.count)").font(Font.body.bold()).foregroundColor(Color.error)
                 Text("Ausgewählt")
             }.frame(maxWidth: .infinity, alignment: .trailing).padding([.leading, .trailing], 30).padding(.top, 10)
             Toggle("Free-Learn Modus", isOn: $freeLearn)
                .padding([.top, .leading, .trailing])
-            List(deckList, id: \.self, selection: $selection) {
-                deck in
-                SelectDecksItem(deck: deck, selectedItems: $selection)
+            if(freeLearn) {
+                List(deckList, id: \.self, selection: $selection) {
+                    deck in
+                    SelectDecksItem(deck: deck, selectedItems: $selection)
+                }
+                .background(Color.background.ignoresSafeArea())
+                .onAppear {
+                    // Set the default to clear
+                    UITableView.appearance().backgroundColor = .clear
+                }
+                if(selection.count > 0) {
+                    NavigationLink(destination: FullCardViewStatic(cardArray: getCardArrayFree(), currCard: 0, deckSet: selection, freeLearn: freeLearn)) {
+                        Text("Ausgewählte Decks lernen").foregroundColor(Color.primary)
+                    }.padding(.top, 10)
+                } else {
+                    Text("Wähle Decks aus um zu lernen").foregroundColor(Color.secondary)
+                }
             }
-            .background(Color.background.ignoresSafeArea())
-            .onAppear {
-                // Set the default to clear
-                UITableView.appearance().backgroundColor = .clear
+            else {
+                List(getDueDecks(), id: \.self, selection: $selectionSRS) {
+                    deck in
+                    SelectDecksItem(deck: deck, selectedItems: $selectionSRS)
+                }
+                .background(Color.background.ignoresSafeArea())
+                .onAppear {
+                    // Set the default to clear
+                    UITableView.appearance().backgroundColor = .clear
+                }
+                if(selectionSRS.count > 0) {
+                    NavigationLink(destination: FullCardViewStatic(cardArray: getCardArraySRS(), currCard: 0, deckSet: selectionSRS, freeLearn: freeLearn)) {
+                        Text("Ausgewählte Decks lernen").foregroundColor(Color.primary)
+                    }.padding(.top, 10)
+                } else {
+                    Text("Wähle Decks aus um zu lernen").foregroundColor(Color.secondary)
+                }
             }
-            
-            if(selection.count > 0) {
-                NavigationLink(destination: FullCardViewStatic(cardArray: freeLearn ? getCardArrayFree() : getCardArraySRS(), currCard: 0, deckSet: selection, showButtons: true, freeLearn: freeLearn)) {
-                    Text("Ausgewählte Decks lernen").foregroundColor(Color.primary)
-                }.padding(.top, 10)
-            } else {
-                Text("Wähle Decks aus um zu lernen").foregroundColor(Color.secondary)
-            }
-
             Spacer()
-            
         }
         .background(Color.background)
     }
@@ -81,7 +99,7 @@ struct LearnCardsPage: View {
     private func getCardArraySRS() -> [[Card]] {
         var cardArray: [[Card]] = [[]]
         
-        for (idx, deck) in selection.enumerated() {
+        for (idx, deck) in selectionSRS.enumerated() {
             if(idx != 0) { cardArray.append([]) }
             for card in cardList {
                 if(card.cardToDeck == deck) {
@@ -95,7 +113,27 @@ struct LearnCardsPage: View {
                 }
             }
         }
-        print(Date.now)
         return cardArray
+    }
+    
+    private func getDueDecks() -> [Deck] {
+        var selectionSRS: [Deck] = []
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        let secondDate = Date.now
+        
+        for deck in deckList {
+            for card in cardList {
+                let firstDate = card.nextReview
+                if(card.cardToDeck == deck && !(firstDate!.compare(secondDate) == .orderedDescending)) {
+                    selectionSRS.append(deck)
+                    //print(deck)
+                    break
+                }
+            }
+        }
+        print(selectionSRS.count)
+        return selectionSRS
     }
 }

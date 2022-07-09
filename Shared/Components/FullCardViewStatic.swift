@@ -21,7 +21,7 @@ struct deckListItem: View {
      var body: some View {
          if(cardCount > 0) {
              HStack {
-                 Text(deckName ?? "No deck name!")
+                 Text(deckName)
                  Spacer()
                  Text("\(cardCount)")
              }
@@ -101,7 +101,7 @@ struct FullCardViewStatic: View {
                                             showFlip = !showFlip
                                             showFront = false
                                         }) {
-                                            Text("Flip card")
+                                            Text("Karte umdrehen")
                                                 .frame(width: 300, height: 60)
                                                 .background(RoundedRectangle(cornerRadius: 8).fill(.white))
                                         }

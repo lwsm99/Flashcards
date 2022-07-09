@@ -50,7 +50,7 @@ struct Footer: View {
                     case 1:
                         AddCardsPage().toolbar {
                             ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
-                                Text("App Name").bold().foregroundColor(Color.primary).textCase(.uppercase)
+                                Text("Flashcards").bold().foregroundColor(Color.primary).textCase(.uppercase)
                             }
                             ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
                                 DotsMenuButton(itemToDelete: nil)
@@ -60,7 +60,7 @@ struct Footer: View {
                         LearnCardsPage()
                             .toolbar {
                                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
-                                    Text("App Name").bold().foregroundColor(Color.primary).textCase(.uppercase)
+                                    Text("Flashcards").bold().foregroundColor(Color.primary).textCase(.uppercase)
                                 }
                                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
                                     DotsMenuButton(itemToDelete: nil)
@@ -70,7 +70,7 @@ struct Footer: View {
                         StartPage()
                             .toolbar {
                                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
-                                    Text("App Name").bold().foregroundColor(Color.primary).textCase(.uppercase)
+                                    Text("Flashcards").bold().foregroundColor(Color.primary).textCase(.uppercase)
                                 }
                                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
                                     DotsMenuButton(itemToDelete: nil)

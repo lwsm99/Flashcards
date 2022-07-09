@@ -49,10 +49,10 @@ struct DeckCardMenu: View {
                 HStack {
                     Text("Statistiken")
                         .foregroundColor(.white)
-                        .font(.headline)
+                        .font(.title3)
                         .bold()
                         .padding()
-                        .frame(width: 315, height: 35, alignment: .leading)
+                        .frame(width: 315, height: 40, alignment: .leading)
                     Button(action: {
                         print("Open stats")
                         isStatOpen = !isStatOpen
@@ -72,70 +72,108 @@ struct DeckCardMenu: View {
                             .font(.headline)
                             .frame(width: 315, alignment: .leading)
                             .padding(.bottom, 10)
-
-                        Text("Boxen:")
-                            .font(.headline)
-                            .frame(width: 315, alignment: .leading)
-                            .padding(.bottom, 10)
                         VStack {
-                            VStack {
-                                Text("Neu/Failed")
-                                HStack {
-                                    ProgressView("", value: getBoxCardCount(deck: deck, box: 0), total: getMaxBoxCardCount(deck: deck))
-                                        .accentColor(.red)
-                                        .scaleEffect(x: 1, y: 2)
-                                    Text("\(Int(getBoxCardCount(deck: deck, box: 0)))")
-                                    //Count
-                                }
-                            }
-                            VStack {
-                                Text("Box 1")
-                                HStack {
-                                    ProgressView("", value: getBoxCardCount(deck: deck, box: 1), total: getMaxBoxCardCount(deck: deck))
-                                        .accentColor(.green)
-                                        .scaleEffect(x: 1, y: 2)
-                                    Text("\(Int(getBoxCardCount(deck: deck, box: 1)))")
-                                    //Count
-                                }
-                            }
-                            VStack {
-                                Text("Box 2")
-                                HStack {
-                                    ProgressView("", value: getBoxCardCount(deck: deck, box: 2), total: getMaxBoxCardCount(deck: deck))
-                                        .accentColor(.green)
-                                        .scaleEffect(x: 1, y: 2)
-                                    Text("\(Int(getBoxCardCount(deck: deck, box: 2)))")
-                                    //Count
-                                }
-                            }
-                            VStack {
-                                Text("Box 3")
-                                HStack {
-                                    ProgressView("", value: getBoxCardCount(deck: deck, box: 3), total: getMaxBoxCardCount(deck: deck))
-                                        .accentColor(.green)
-                                        .scaleEffect(x: 1, y: 2)
-                                    Text("\(Int(getBoxCardCount(deck: deck, box: 3)))")
-                                    //Count
-                                }
-                            }
-                            VStack {
-                                Text("Box 4")
-                                HStack {
-                                    ProgressView("", value: getBoxCardCount(deck: deck, box: 4), total: getMaxBoxCardCount(deck: deck))
-                                        .accentColor(.green)
-                                        .scaleEffect(x: 1, y: 2)
-                                    Text("\(Int(getBoxCardCount(deck: deck, box: 4)))")
-                                    //Count
+                            Text("Boxen:")
+                                .font(.headline)
+                                .frame(width: 315, alignment: .leading)
+                                .padding(.bottom, 10)
+                            
+                            ForEach(0...4, id: \.self) {
+                                number in
+                                if(getBoxCardCount(deck: deck, box: number) == 0) {
+                                } else {
+                                    VStack(alignment: .leading) {
+                                        if(number == 0) {
+                                            Text("Neu/Failed")
+                                                .padding(.bottom, -10)
+                                        } else {
+                                            Text("Box \(number)")
+                                                .padding(.bottom, -10)
+                                        }
+                                        HStack {
+                                            ProgressView("", value: getBoxCardCount(deck: deck, box: number), total: getMaxBoxCardCount(deck: deck))
+                                                .accentColor(number == 0 ? .red : .green)
+                                                .scaleEffect(x: 1, y: 2)
+                                                .padding(.top, -27)
+                                            Spacer()
+                                            Text("\(Int(getBoxCardCount(deck: deck, box: number)))")
+                                                .padding(5)
+                                        }
+                                    }
                                 }
                             }
                         }
+                        .padding(2)
+                        .background(RoundedRectangle(cornerRadius: 8).fill(Color.background))
+                        .foregroundColor(.black)
+                        /*
+                        VStack(alignment: .leading) {
+                            Text("Neu/Failed")
+                                .padding(.bottom, -10)
+                            HStack {
+                                ProgressView("", value: getBoxCardCount(deck: deck, box: 0), total: getMaxBoxCardCount(deck: deck))
+                                    .accentColor(.red)
+                                    .scaleEffect(x: 1, y: 2)
+                                    .padding(.top, -27)
+                                Spacer()
+                                Text("\(Int(getBoxCardCount(deck: deck, box: 0)))")
+                            }
+                        }
+                        VStack(alignment: .leading) {
+                            Text("Box 1")
+                                .padding(.bottom, -10)
+                            HStack {
+                                ProgressView("", value: getBoxCardCount(deck: deck, box: 1), total: getMaxBoxCardCount(deck: deck))
+                                    .accentColor(.green)
+                                    .scaleEffect(x: 1, y: 2)
+                                    .padding(.top, -27)
+                                Spacer()
+                                Text("\(Int(getBoxCardCount(deck: deck, box: 1)))")
+                            }
+                        }.frame(alignment: .leading)
+                        VStack(alignment: .leading) {
+                            Text("Box 2")
+                                .padding(.bottom, -10)
+                            HStack {
+                                ProgressView("", value: getBoxCardCount(deck: deck, box: 2), total: getMaxBoxCardCount(deck: deck))
+                                    .accentColor(.green)
+                                    .scaleEffect(x: 1, y: 2)
+                                    .padding(.top, -27)
+                                Spacer()
+                                Text("\(Int(getBoxCardCount(deck: deck, box: 2)))")
+                            }
+                        }
+                        VStack(alignment: .leading) {
+                            Text("Box 3")
+                                .padding(.bottom, -10)
+                            HStack {
+                                ProgressView("", value: getBoxCardCount(deck: deck, box: 3), total: getMaxBoxCardCount(deck: deck))
+                                    .accentColor(.green)
+                                    .scaleEffect(x: 1, y: 2)
+                                    .padding(.top, -27)
+                                Spacer()
+                                Text("\(Int(getBoxCardCount(deck: deck, box: 3)))")
+                            }
+                        }
+                        VStack(alignment: .leading) {
+                            Text("Box 4")
+                                .padding(.bottom, -10)
+                            HStack {
+                                ProgressView("", value: getBoxCardCount(deck: deck, box: 4), total: getMaxBoxCardCount(deck: deck))
+                                    .accentColor(.green)
+                                    .scaleEffect(x: 1, y: 2)
+                                    .padding(.top, -27)
+                                Spacer()
+                                Text("\(Int(getBoxCardCount(deck: deck, box: 4)))")
+                            }
+                        } */
                     }
                     .frame(width: 315).background(RoundedRectangle(cornerRadius: 10).fill(.blue))
                     .foregroundColor(.white)
                     .padding()
                 }
             }
-            .background(RoundedRectangle(cornerRadius: 10).fill(.blue))
+            .background(RoundedRectangle(cornerRadius: 13).fill(.blue))
 
             Spacer().frame(height: 30)
             

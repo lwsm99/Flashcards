@@ -26,9 +26,17 @@ struct StartPage: View {
     
     var body: some View {
         VStack {
-            
             // Input
-            SearchInput()
+            HStack {
+                Spacer().frame(width:15)
+                HStack {
+                    TextField("Name des Decks eingeben", text: $inputValue)
+                    Image(systemName: "magnifyingglass").foregroundColor(Color.disabled)
+                }.frame(height: 47)
+                    .padding([.leading, .trailing], 15)
+                    .background(Color.white, in: Capsule())
+                Spacer().frame(width:15)
+            }
             
             Spacer().frame(height:30)
             
@@ -36,9 +44,18 @@ struct StartPage: View {
             ScrollView {
                 VStack{
                     ForEach(deckList) { deck in
-                        NavigationLink(destination: DeckCardMenu(title: deck.title ?? "", cardCount: getCardCount(deck: deck), progress: getProgress(deck: deck), color: $bgColor1, deck: deck)) {
-                            DeckCard(color: $bgColor1, title: deck.title ?? "", subtitle: "\(getCardCount(deck: deck)) Karte(n)", progress: getProgress(deck: deck))
-                        }.simultaneousGesture(TapGesture().onEnded { DeckSettings.value = deck })
+                        if(inputValue != "") {
+                            if(deck.title!.lowercased().contains(inputValue.lowercased())) {
+                                NavigationLink(destination: DeckCardMenu(title: deck.title ?? "", cardCount: getCardCount(deck: deck), progress: getProgress(deck: deck), color: $bgColor1, deck: deck)) {
+                                    DeckCard(color: $bgColor1, title: deck.title ?? "", subtitle: "\(getCardCount(deck: deck)) Karte(n)", progress: getProgress(deck: deck))
+                                }.simultaneousGesture(TapGesture().onEnded { DeckSettings.value = deck })
+                            }
+                        } else {
+                            NavigationLink(destination: DeckCardMenu(title: deck.title ?? "", cardCount: getCardCount(deck: deck), progress: getProgress(deck: deck), color: $bgColor1, deck: deck)) {
+                                DeckCard(color: $bgColor1, title: deck.title ?? "", subtitle: "\(getCardCount(deck: deck)) Karte(n)", progress: getProgress(deck: deck))
+                            }.simultaneousGesture(TapGesture().onEnded { DeckSettings.value = deck })
+                        }
+                        
                     }
                 }.navigationTitle("Alle Decks")
             }

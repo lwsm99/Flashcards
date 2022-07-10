@@ -15,6 +15,7 @@ struct ToggleCheckboxStyle: ToggleStyle {
 }
 
 struct LearnCardsPage: View {
+    @State private var inputValue: String = ""
     
     // Fetch Requests
     @Environment(\.managedObjectContext) private var viewContext
@@ -33,7 +34,16 @@ struct LearnCardsPage: View {
         VStack {
             
             // Input
-            SearchInput()
+            HStack {
+                Spacer().frame(width:15)
+                HStack {
+                    TextField("Name des Decks eingeben", text: $inputValue)
+                    Image(systemName: "magnifyingglass").foregroundColor(Color.disabled)
+                }.frame(height: 47)
+                    .padding([.leading, .trailing], 15)
+                    .background(Color.white, in: Capsule())
+                Spacer().frame(width:15)
+            }
             
             HStack {
                 Text(freeLearn ? "\(selection.count)" : "\(selectionSRS.count)").font(Font.body.bold()).foregroundColor(Color.error)
@@ -44,7 +54,14 @@ struct LearnCardsPage: View {
             if(freeLearn) {
                 List(deckList, id: \.self, selection: $selection) {
                     deck in
-                    SelectDecksItem(deck: deck, selectedItems: $selection)
+                    if(inputValue != "") {
+                        if(deck.title!.lowercased().contains(inputValue.lowercased())) {
+                            SelectDecksItem(deck: deck, selectedItems: $selection)
+                        }
+                    } else {
+                        SelectDecksItem(deck: deck, selectedItems: $selection)
+                    }
+                    
                 }
                 .background(Color.background.ignoresSafeArea())
                 .onAppear {
